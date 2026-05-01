@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check My Hustle | Legit or Quit</title>
+    <style>
+        :root {
+            --bg: #fdfaf5;
+            --text: #1a1a1a;
+            --accent: #e65127;
+            --border: #e5e0d8;
+            --muted: #666;
+            --legit: #10b981;
+            --quit: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        header { width: 100%; max-width: 1000px; margin-bottom: 5rem; }
+        .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; color: var(--text); }
+        .logo span { color: var(--accent); }
+
+        .main-card { max-width: 650px; width: 100%; }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        h1 span { color: var(--accent); border-bottom: 4px solid var(--accent); }
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 2.5rem;
+            max-width: 520px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            flex: 1;
+            padding: 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--accent); }
+
+        .btn-main {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 2.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn-main:active { transform: scale(0.98); }
+
+        .ad-slot {
+            width: 100%;
+            border: 1px dashed var(--border);
+            padding: 1.2rem;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        /* Results Display */
+        #result-screen { display: none; margin-top: 2rem; width: 100%; }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-weight: 900;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .report-box {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .echo-label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 0.5rem; }
+        .echo-bar { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 1rem; }
+        .echo-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+
+        .pivot-box {
+            background: #fff5f2;
+            border: 1px solid #ffdbd0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent);
+        }
+
+        footer { margin-top: auto; padding: 2rem; color: #999; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">check my <span>hustle</span></a>
+    </header>
+
+    <div class="main-card" id="home-screen">
+        <h1>Is AI selling you a <span>dead-end dream?</span></h1>
+        <p class="description">
+            AI is telling millions of people the exact same thing. 
+            Drop your idea below to see if it's <strong>legit</strong>, if you should <strong>quit</strong>, or where to <strong>pivot</strong>.
+        </p>
+
+        <div class="input-group">
+            <input type="text" id="hustleInput" placeholder="e.g. faceless finance YouTube channel...">
+            <button class="btn-main" onclick="analyzeHustle()">Check my hustle</button>
+        </div>
+
+        <div class="ad-slot">Advertisement — Google AdSense</div>
+    </div>
+
+    <div class="main-card" id="result-screen">
+        <div id="verdictBadge" class="status-badge">ANALYZING...</div>
+        <h2 id="userIdeaDisplay" style="font-size: 2rem; margin-bottom: 1.5rem;"></h2>
+
+        <div class="report-box">
+            <div class="echo-label">
+                <span>AI ECHO SCORE</span>
+                <span id="echoNum">0%</span>
+            </div>
+            <div class="echo-bar"><div id="echoFill" class="echo-fill"></div></div>
+            <p id="critiqueText" style="color: var(--muted);"></p>
+        </div>
+
+        <div class="pivot-box" id="pivotContainer">
+            <strong style="color: var(--accent); font-size: 0.8rem; text-transform: uppercase;">The Smart Pivot</strong>
+            <p id="pivotText" style="margin-top: 0.5rem; font-weight: 500;"></p>
+        </div>
+
+        <button onclick="window.location.reload()" style="margin-top: 2rem; background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 6px; cursor: pointer;">New Audit</button>
+        <div class="ad-slot">Advertisement — Google AdSense</div>
+    </div>
+
+    <footer>
+        checkmyhustle.com — free, honest, no hype.
+    </footer>
+
+    <script>
+        function analyzeHustle() {
+            const input = document.getElementById('hustleInput').value;
+            if (!input) return;
+
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            document.getElementById('userIdeaDisplay').innerText = `"${input}"`;
+
+            // This is the "Honesty Engine" logic
+            const slopTerms = ['faceless', 'dropshipping', 'fba', 'youtube', 'ai agency', 'kdp', 'print on demand'];
+            const lowerInput = input.toLowerCase();
+            const isHighSlop = slopTerms.some(term => lowerInput.includes(term));
+
+            // Generate "Pattern" data
+            const score = isHighSlop ? Math.floor(Math.random() * 30) + 70 : Math.floor(Math.random() * 40) + 10;
+            
+            setTimeout(() => {
+                const badge = document.getElementById('verdictBadge');
+                const fill = document.getElementById('echoFill');
+                const critique = document.getElementById('critiqueText');
+                const pivot = document.getElementById('pivotText');
+                const pivotContainer = document.getElementById('pivotContainer');
+
+                document.getElementById('echoNum').innerText = score + '%';
+                fill.style.width = score + '%';
+
+                if (score > 65) {
+                    badge.innerText = 'QUIT';
+                    badge.style.background = '#fee2e2';
+                    badge.style.color = 'var(--quit)';
+                    fill.style.backgroundColor = 'var(--quit)';
+                    critique.innerText = "This idea is currently being weaponized by 'Gurus' and AI bots. The saturation level is extreme, and platform algorithms are actively de-prioritizing this specific content pattern.";
+                    pivot.innerText = "Instead of a generic digital hustle, focus on a high-friction service in your local area that requires a physical human element.";
+                } else if (score > 35) {
+                    badge.innerText = 'MID';
+                    badge.style.background = '#fef3c7';
+                    badge.style.color = '#d97706';
+                    fill.style.backgroundColor = '#f59e0b';
+                    critique.innerText = "There is a market here, but it's noisy. You are competing with thousands of people using the exact same AI-generated blueprints.";
+                    pivot.innerText = "Narrow your focus to a hyper-specific demographic (e.g., 'Budgeting for South African Students') rather than a global audience.";
+                } else {
+                    badge.innerText = 'LEGIT';
+                    badge.style.background = '#d1fae5';
+                    badge.style.color = 'var(--legit)';
+                    fill.style.backgroundColor = 'var(--legit)';
+                    critique.innerText = "This shows original intent. It’s a low-echo idea that hasn't been strip-mined by AI recommendations yet. High potential for genuine growth.";
+                    pivotContainer.style.display = 'none';
+                }
+            }, 800);
+        }
+    </script>
+</body>
+</html>
