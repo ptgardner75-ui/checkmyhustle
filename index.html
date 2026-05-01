@@ -13,6 +13,7 @@
             --muted: #666;
             --legit: #10b981;
             --quit: #ef4444;
+            --pivot: #f59e0b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -96,8 +97,7 @@
             margin-top: 1.5rem;
         }
 
-        /* Results Display */
-        #result-screen { display: none; margin-top: 2rem; width: 100%; }
+        #results-view { display: none; margin-top: 2rem; width: 100%; }
         
         .status-badge {
             display: inline-block;
@@ -106,7 +106,12 @@
             font-weight: 900;
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            color: white;
         }
+
+        .status-badge.QUIT { background-color: var(--quit); }
+        .status-badge.PIVOT { background-color: var(--pivot); }
+        .status-badge.LEGIT { background-color: var(--legit); }
 
         .report-box {
             background: white;
@@ -118,7 +123,10 @@
 
         .echo-label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 0.5rem; }
         .echo-bar { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 1rem; }
-        .echo-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        .echo-fill { height: 100%; width: 0%; transition: width 1.5s ease; }
+        .echo-fill.QUIT { background-color: var(--quit); }
+        .echo-fill.PIVOT { background-color: var(--pivot); }
+        .echo-fill.LEGIT { background-color: var(--legit); }
 
         .pivot-box {
             background: #fff5f2;
@@ -134,10 +142,10 @@
 <body>
 
     <header>
-        <a href="#" class="logo">check my <span>hustle</span></a>
+        <div class="logo">check my <span>hustle</span></div>
     </header>
 
-    <div class="main-card" id="home-screen">
+    <div class="main-card" id="landing-view">
         <h1>Is AI selling you a <span>dead-end dream?</span></h1>
         <p class="description">
             AI is telling millions of people the exact same thing. 
@@ -152,25 +160,25 @@
         <div class="ad-slot">Advertisement — Google AdSense</div>
     </div>
 
-    <div class="main-card" id="result-screen">
-        <div id="verdictBadge" class="status-badge">ANALYZING...</div>
-        <h2 id="userIdeaDisplay" style="font-size: 2rem; margin-bottom: 1.5rem;"></h2>
+    <div class="main-card" id="results-view">
+        <div id="statusBadge" class="status-badge">ANALYZING...</div>
+        <h2 id="resultQuery" style="font-size: 2rem; margin-bottom: 1.5rem;"></h2>
 
         <div class="report-box">
             <div class="echo-label">
-                <span>AI ECHO SCORE</span>
-                <span id="echoNum">0%</span>
+                <span>HUSTLE SCORE</span>
+                <span id="hustleScoreText">0%</span>
             </div>
-            <div class="echo-bar"><div id="echoFill" class="echo-fill"></div></div>
-            <p id="critiqueText" style="color: var(--muted);"></p>
+            <div class="echo-bar"><div id="progressBar" class="echo-fill"></div></div>
+            <p id="resultFeedback" style="color: var(--muted);"></p>
         </div>
 
-        <div class="pivot-box" id="pivotContainer">
-            <strong style="color: var(--accent); font-size: 0.8rem; text-transform: uppercase;">The Smart Pivot</strong>
-            <p id="pivotText" style="margin-top: 0.5rem; font-weight: 500;"></p>
+        <div class="pivot-box">
+            <strong id="verdictTitle" style="color: var(--accent); font-size: 0.8rem; text-transform: uppercase;">VERDICT</strong>
+            <p id="verdictDetails" style="margin-top: 0.5rem; font-weight: 500;"></p>
         </div>
 
-        <button onclick="window.location.reload()" style="margin-top: 2rem; background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 6px; cursor: pointer;">New Audit</button>
+        <button onclick="newAudit()" style="margin-top: 2rem; background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 6px; cursor: pointer;">New Audit</button>
         <div class="ad-slot">Advertisement — Google AdSense</div>
     </div>
 
@@ -179,56 +187,75 @@
     </footer>
 
     <script>
-        function analyzeHustle() {
-            const input = document.getElementById('hustleInput').value;
-            if (!input) return;
-
-            document.getElementById('home-screen').style.display = 'none';
-            document.getElementById('result-screen').style.display = 'block';
-            document.getElementById('userIdeaDisplay').innerText = `"${input}"`;
-
-            // This is the "Honesty Engine" logic
-            const slopTerms = ['faceless', 'dropshipping', 'fba', 'youtube', 'ai agency', 'kdp', 'print on demand'];
-            const lowerInput = input.toLowerCase();
-            const isHighSlop = slopTerms.some(term => lowerInput.includes(term));
-
-            // Generate "Pattern" data
-            const score = isHighSlop ? Math.floor(Math.random() * 30) + 70 : Math.floor(Math.random() * 40) + 10;
-            
-            setTimeout(() => {
-                const badge = document.getElementById('verdictBadge');
-                const fill = document.getElementById('echoFill');
-                const critique = document.getElementById('critiqueText');
-                const pivot = document.getElementById('pivotText');
-                const pivotContainer = document.getElementById('pivotContainer');
-
-                document.getElementById('echoNum').innerText = score + '%';
-                fill.style.width = score + '%';
-
-                if (score > 65) {
-                    badge.innerText = 'QUIT';
-                    badge.style.background = '#fee2e2';
-                    badge.style.color = 'var(--quit)';
-                    fill.style.backgroundColor = 'var(--quit)';
-                    critique.innerText = "This idea is currently being weaponized by 'Gurus' and AI bots. The saturation level is extreme, and platform algorithms are actively de-prioritizing this specific content pattern.";
-                    pivot.innerText = "Instead of a generic digital hustle, focus on a high-friction service in your local area that requires a physical human element.";
-                } else if (score > 35) {
-                    badge.innerText = 'MID';
-                    badge.style.background = '#fef3c7';
-                    badge.style.color = '#d97706';
-                    fill.style.backgroundColor = '#f59e0b';
-                    critique.innerText = "There is a market here, but it's noisy. You are competing with thousands of people using the exact same AI-generated blueprints.";
-                    pivot.innerText = "Narrow your focus to a hyper-specific demographic (e.g., 'Budgeting for South African Students') rather than a global audience.";
-                } else {
-                    badge.innerText = 'LEGIT';
-                    badge.style.background = '#d1fae5';
-                    badge.style.color = 'var(--legit)';
-                    fill.style.backgroundColor = 'var(--legit)';
-                    critique.innerText = "This shows original intent. It’s a low-echo idea that hasn't been strip-mined by AI recommendations yet. High potential for genuine growth.";
-                    pivotContainer.style.display = 'none';
-                }
-            }, 800);
+    const marketIntelligence = {
+        quit: {
+            reasons: [
+                "Low Signal-to-Noise Ratio. This concept is a primary output of over-trained LLM templates.",
+                "High Market Saturation. Barrier to entry is sub-zero, leading to a 'race to the bottom' pricing model.",
+                "Algorithm Suppression Risk. Platforms are actively filtering this type of AI-generated commodity content."
+            ],
+            advice: "This is a 'dead-end dream.' The capital required to stand out exceeds the potential lifetime value (LTV) of the customer."
+        },
+        pivot: {
+            reasons: [
+                "Vertical Displacement found. The broad idea is saturated, but a hyper-niche application shows lower competition.",
+                "Data Asymmetry opportunity. Base AI models can't solve this without your specific, local industry knowledge.",
+                "Mid-Level Hustle Score. You are competing with 'gurus' rather than actual market innovators."
+            ],
+            advice: "Stop targeting the 'Global Audience.' Use your unique dataset to solve this for one specific, high-paying demographic."
+        },
+        legit: {
+            reasons: [
+                "High Originality Index. This idea falls outside the common 'get rich quick' reward loops found in AI training sets.",
+                "Strong Utility Signal. This solves a high-friction problem in a legacy industry that AI hasn't disrupted yet.",
+                "Defensible IP potential. This requires human-in-the-loop execution that can't be easily cloned by a bot."
+            ],
+            advice: "Move to the build phase. Focus on your Go-To-Market (GTM) strategy—the math on this actually checks out."
         }
+    };
+
+    function analyzeHustle() {
+        const input = document.getElementById('hustleInput').value;
+        if (!input) return alert("Drop your idea first.");
+
+        const inputLower = input.toLowerCase();
+        let type = 'pivot'; 
+        
+        const redFlags = ['faceless', 'drop shipping', 'automation agency', 'print on demand', 'smma', 'digital products', 'repackaged', 'books', 'youtube'];
+        const greenFlags = ['local', 'repair', 'manufacturing', 'expert', 'specialized', 'physical', 'consulting', 'trade', 'law', 'film'];
+
+        if (redFlags.some(rf => inputLower.includes(rf))) type = 'quit';
+        else if (greenFlags.some(gf => inputLower.includes(gf))) type = 'legit';
+
+        const data = marketIntelligence[type];
+        const randomReason = data.reasons[Math.floor(Math.random() * data.reasons.length)];
+        const score = type === 'quit' ? Math.floor(Math.random() * 30) + 70 : 
+                      type === 'legit' ? Math.floor(Math.random() * 25) + 5 : 
+                      Math.floor(Math.random() * 30) + 35;
+
+        document.getElementById('resultQuery').textContent = `"${input}"`;
+        document.getElementById('statusBadge').textContent = type.toUpperCase();
+        document.getElementById('statusBadge').className = 'status-badge ' + type.toUpperCase();
+        document.getElementById('hustleScoreText').textContent = `${score}%`;
+        
+        const bar = document.getElementById('progressBar');
+        bar.style.width = `${score}%`;
+        bar.className = 'echo-fill ' + type.toUpperCase();
+
+        document.getElementById('resultFeedback').innerHTML = `<strong>TECHNICAL ANALYSIS:</strong> ${randomReason}`;
+        document.getElementById('verdictTitle').textContent = `VERDICT: ${type.toUpperCase()}`;
+        document.getElementById('verdictDetails').textContent = data.advice;
+
+        document.getElementById('landing-view').style.display = 'none';
+        document.getElementById('results-view').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+
+    function newAudit() {
+        document.getElementById('landing-view').style.display = 'block';
+        document.getElementById('results-view').style.display = 'none';
+        document.getElementById('hustleInput').value = '';
+    }
     </script>
 </body>
 </html>
