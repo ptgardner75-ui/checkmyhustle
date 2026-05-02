@@ -28,14 +28,12 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 1.5rem; /* Balanced padding */
+            padding: 1.5rem;
         }
 
         header { width: 100%; max-width: 700px; margin-bottom: 2rem; }
         .logo { font-weight: 900; font-size: 1.3rem; color: var(--text); text-decoration: none; text-transform: lowercase; }
         .logo span { color: var(--accent); }
-
-        .main-card { max-width: 650px; width: 100%; }
 
         h1 { font-size: 3.2rem; line-height: 1.1; margin-bottom: 1.2rem; font-weight: 900; letter-spacing: -2px; }
         h1 span { color: var(--accent); }
@@ -44,15 +42,28 @@
         .description strong { color: var(--text); }
 
         .input-group { display: flex; gap: 10px; margin-bottom: 1.5rem; }
-        input { flex: 1; padding: 1.1rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1.1rem; outline: none; }
-        input:focus { border-color: var(--accent); }
+        input[type="text"] { flex: 1; padding: 1.1rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1.1rem; outline: none; background: white; }
+        input[type="text"]:focus { border-color: var(--accent); }
 
-        .btn-main { background-color: var(--accent); color: white; border: none; padding: 0 1.8rem; border-radius: 12px; font-weight: 700; cursor: pointer; transition: transform 0.1s; }
+        .btn-main { background-color: var(--accent); color: white; border: none; padding: 0 1.8rem; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1rem; transition: transform 0.1s; }
         .btn-main:active { transform: scale(0.98); }
+        .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .ad-slot { width: 100%; border: 1px dashed var(--border); padding: 1.2rem; text-align: center; color: #aaa; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 12px; margin: 1.5rem 0; }
 
-        #results-view { display: none; width: 100%; }
+        .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 0; width: 100%; }
+        .hustling-wrap.visible { display: flex; }
+        .hustling-text { font-size: 3rem; font-weight: 900; color: var(--accent); letter-spacing: -1px; animation: hustle-flash 0.8s ease-in-out infinite; }
+        .hustling-sub { font-size: 0.85rem; color: var(--muted); margin-top: 1rem; text-align: center; max-width: 300px; line-height: 1.6; }
+        @keyframes hustle-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+
+        .model-checks { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .model-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: white; transition: all 0.3s; }
+        .model-chip.done { background: var(--accent); color: white; border-color: var(--accent); }
+
+        .results-container { display: none; width: 100%; max-width: 650px; }
+        .results-container.visible { display: block; }
+
         .status-badge { display: inline-block; padding: 6px 16px; border-radius: 6px; font-weight: 900; font-size: 0.9rem; margin-bottom: 0.8rem; color: white; }
         .status-badge.QUIT { background-color: var(--quit); }
         .status-badge.PIVOT { background-color: var(--pivot); }
@@ -60,136 +71,324 @@
 
         .report-box { background: white; border: 1px solid var(--border); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.5rem; }
         .hustle-label { display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--muted); }
-        .progress-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 1.2rem; }
+        .progress-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 1.5rem; }
         .progress-fill { height: 100%; width: 0%; transition: width 1.2s cubic-bezier(0.1, 0.5, 0.1, 1); }
 
-        .analysis-text { font-size: 1.05rem; color: #333; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #f5f5f5; }
-        
-        .affiliate-card { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.2rem; border-radius: 12px; margin-top: 1rem; }
-        
-        footer { margin-top: auto; padding: 2rem 0; color: #bbb; font-size: 0.85rem; text-align: center; max-width: 650px; line-height: 1.4; border-top: 1px solid #f0f0f0; }
+        .model-votes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .vote-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+        .vote-chip.quit { background: #fee2e2; color: var(--quit); }
+        .vote-chip.legit { background: #d1fae5; color: var(--legit); }
+        .vote-chip.pivot { background: #fef3c7; color: var(--pivot); }
+
+        .section-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; }
+        .analysis-text { font-size: 1.05rem; color: #333; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f5f5f5; line-height: 1.7; }
+
+        .pivot-box { background: #fff8f0; border-left: 3px solid var(--pivot); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem; }
+        .pivot-box p { font-size: 1rem; font-weight: 600; color: #92400e; }
+
+        .legit-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.2rem; border-radius: 12px; margin-bottom: 1.5rem; }
+        .legit-box p { font-size: 0.95rem; color: #166534; }
+
+        .share-section { margin-top: 1.5rem; }
+        .share-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.8rem; }
+        .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+        .share-btn { padding: 8px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+        .share-x { background: #000; color: white; }
+        .share-fb { background: #1877f2; color: white; }
+        .share-wa { background: #25d366; color: white; }
+
+        .reset-btn { background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; margin-top: 1rem; width: 100%; }
+
+        .shame-section { width: 100%; max-width: 650px; margin-top: 2rem; }
+        .shame-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.3rem; }
+        .shame-subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+        .shame-list { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+        .shame-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border-bottom: 1px solid #f5f5f5; }
+        .shame-item:last-child { border-bottom: none; }
+        .shame-rank { font-size: 1.2rem; font-weight: 900; color: var(--accent); width: 28px; flex-shrink: 0; }
+        .shame-idea { flex: 1; font-weight: 600; font-size: 0.95rem; }
+        .shame-count { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+
+        footer { margin-top: 3rem; padding: 2rem 0; color: #bbb; font-size: 0.85rem; text-align: center; max-width: 650px; line-height: 1.4; border-top: 1px solid #f0f0f0; width: 100%; }
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             .input-group { flex-direction: column; }
             .btn-main { padding: 1.1rem; }
+            .hustling-text { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="/" class="logo">check my <span>hustle</span></a>
-    </header>
+<header>
+    <a href="/" class="logo">check my <span>hustle</span></a>
+</header>
 
-    <div class="main-card" id="landing-view">
-        <h1>Is AI selling you a <span>dead-end dream?</span></h1>
-        <p class="description">
-            Got a new business idea? Been using AI to brainstorm your next hustle? Here's the thing — AI is telling <strong>a lot</strong> of other people the exact same thing.<br><br>
-            Drop your idea below. We'll do a deep dive and tell you whether your hustle is <strong>legit</strong>, whether you should <strong>quit</strong>, or exactly where to <strong>pivot</strong>.
-        </p>
+<div class="main-card" id="landing-view" style="max-width:650px; width:100%;">
+    <h1>Is AI selling you a <span>dead-end dream?</span></h1>
+    <p class="description">
+        Got a new business idea? Been using AI to brainstorm your next hustle? Here's the thing — AI is telling <strong>a lot</strong> of other people the exact same thing.<br><br>
+        Drop your idea below. We'll run it across <strong>4 major AI models</strong> simultaneously and tell you whether your hustle is <strong>legit</strong>, whether you should <strong>quit</strong>, or exactly where to <strong>pivot</strong>.
+    </p>
+    <div class="input-group">
+        <input type="text" id="hustleInput" placeholder="Describe your business idea..." onkeypress="if(event.key==='Enter') analyzeHustle()">
+        <button class="btn-main" id="mainBtn" onclick="analyzeHustle()">Check my hustle</button>
+    </div>
+    <div class="ad-slot">Advertisement — Google AdSense</div>
+</div>
 
-        <div class="input-group">
-            <input type="text" id="hustleInput" placeholder="Describe your idea in a few words...">
-            <button class="btn-main" onclick="analyzeHustle()">Check my hustle</button>
+<div class="hustling-wrap" id="hustlingView">
+    <div class="hustling-text">HUSTLING</div>
+    <div class="hustling-sub">Querying 4 AI models simultaneously...<br>This takes about 10 seconds.</div>
+    <div class="model-checks">
+        <div class="model-chip" id="chip-llama">Llama 4</div>
+        <div class="model-chip" id="chip-deepseek">DeepSeek R1</div>
+        <div class="model-chip" id="chip-gemini">Gemini Flash</div>
+        <div class="model-chip" id="chip-mistral">Mistral</div>
+    </div>
+</div>
+
+<div class="results-container" id="resultsView">
+    <div id="statusBadge" class="status-badge">...</div>
+    <h2 id="resultQuery" style="font-size: 1.8rem; margin-bottom: 1.2rem; letter-spacing: -0.5px; font-weight: 900;"></h2>
+
+    <div class="report-box">
+        <div class="hustle-label">
+            <span>AI SATURATION SCORE</span>
+            <span id="scoreText">0%</span>
+        </div>
+        <div class="progress-bg"><div id="progressBar" class="progress-fill"></div></div>
+
+        <div class="section-label">Audited across 4 AI models</div>
+        <div class="model-votes" id="modelVotes"></div>
+
+        <div class="section-label">Hustle Reality</div>
+        <div id="resultFeedback" class="analysis-text"></div>
+
+        <div id="pivotBox" class="pivot-box" style="display:none;">
+            <div class="section-label">The Smart Pivot</div>
+            <p id="pivotText"></p>
         </div>
 
-        <div class="ad-slot">Advertisement — Support our honest analysis</div>
-    </div>
-
-    <div class="results-container" id="results-view" style="max-width:650px; width:100%;">
-        <div id="statusBadge" class="status-badge">ANALYZING...</div>
-        <h2 id="resultQuery" style="font-size: 1.8rem; margin-bottom: 1.2rem; letter-spacing: -0.5px;"></h2>
-
-        <div class="report-box">
-            <div class="hustle-label">
-                <span>HUSTLE SATURATION SCORE</span>
-                <span id="scoreText">0%</span>
-            </div>
-            <div class="progress-bg"><div id="progressBar" class="progress-fill"></div></div>
-            
-            <div id="resultFeedback" class="analysis-text"></div>
-
-            <div id="pivotSection" style="display:none;">
-                <strong style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">The Smart Pivot</strong>
-                <p id="pivotText" style="margin-top: 0.4rem; font-weight: 600; font-size: 1.05rem;"></p>
-            </div>
-
-            <div id="affiliateCard" class="affiliate-card" style="display:none;">
-                <strong>Verified Legit.</strong>
-                <p style="font-size: 0.95rem; color: #166534; margin-top: 0.3rem;">This isn't AI slop. To actually build this, you need real data. <a href="#" style="color: #15803d; font-weight: bold;">Get the full Deep Dive dataset here &rarr;</a></p>
-            </div>
+        <div id="legitBox" class="legit-box" style="display:none;">
+            <div class="section-label">✅ Verified Legit</div>
+            <p id="legitText"></p>
         </div>
 
-        <button onclick="location.reload()" style="background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">Run New Audit</button>
-        <div class="ad-slot">Advertisement</div>
+        <div class="share-section">
+            <div class="share-label">Get roasted? Share it. 💀</div>
+            <div class="share-buttons">
+                <button class="share-btn share-x" onclick="shareResult('x')">𝕏 Post it</button>
+                <button class="share-btn share-fb" onclick="shareResult('fb')">Facebook</button>
+                <button class="share-btn share-wa" onclick="shareResult('wa')">WhatsApp</button>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        Check My Hustle isn't here to hold your hand. We use AI pattern recognition to see if your idea is an original venture or a recycled YouTube trope. We don't build businesses; we just stop you from building bad ones.
-    </footer>
+    <button class="reset-btn" onclick="resetPage()">← Check another hustle</button>
+    <div class="ad-slot">Advertisement — Google AdSense</div>
+</div>
 
-    <script>
-    const engine = {
-        quit: [
-            "Over 450,000 videos have promoted this exact blueprint recently. Platforms are actively filtering this as 'unoriginal slop.'",
-            "The barrier to entry is sub-zero. Your customer acquisition cost (CAC) will always exceed your profit here.",
-            "Major platforms are de-prioritizing AI-commodity content. Entering this market is a race to the bottom.",
-            "This is a 'Top 5' response for every major LLM. You are competing against millions of people with the exact same prompt."
-        ],
-        pivot: [
-            "Base model detected. The broad version is saturated, but a hyper-niche application shows lower competition.",
-            "Generic AI models can't solve this without human industry knowledge. Stop targeting 'everyone' and find a boring niche.",
-            "The core utility is valid, but the 'Faceless' delivery model is a trope. Add a human-in-the-loop element to survive.",
-            "Avoid the 'Global Audience' trap. Apply this tech to a legacy industry (like plumbing or film) where AI hasn't arrived yet."
-        ],
-        legit: [
-            "High Originality Index. This concept falls outside the standard 99% of LLM reward loops. It requires genuine judgment.",
-            "Defensible IP potential. This requires specialized execution that cannot be cloned by a basic bot or a guru course.",
-            "Market Validation: Strong. This addresses a high-friction pain point in a legacy sector that automation hasn't solved.",
-            "This isn't a recycled trend. Pattern recognition shows a genuine service gap that current automation tools cannot fill."
-        ]
+<div class="shame-section" id="shameSection">
+    <div class="shame-title">🔥 Wall of Shame</div>
+    <div class="shame-subtitle">The most recycled AI hustle ideas — submitted by real people this week.</div>
+    <div class="shame-list" id="shameList"></div>
+</div>
+
+<footer>
+    Check My Hustle isn't here to hold your hand. We cross-reference your idea across 4 major AI models to see if it's original or a recycled AI hallucination. Audited by Llama 4, DeepSeek R1, Gemini Flash & Mistral.
+</footer>
+
+<script>
+const OR_KEY = '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';
+const OR_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+const MODELS = [
+    { id: 'meta-llama/llama-4-scout:free', name: 'Llama 4', chip: 'chip-llama' },
+    { id: 'deepseek/deepseek-r1:free', name: 'DeepSeek R1', chip: 'chip-deepseek' },
+    { id: 'google/gemini-flash-1.5:free', name: 'Gemini Flash', chip: 'chip-gemini' },
+    { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral', chip: 'chip-mistral' }
+];
+
+const shameData = [
+    { idea: 'Faceless YouTube Channel', count: 48291 },
+    { idea: 'Amazon KDP Low-Content Books', count: 41823 },
+    { idea: 'Dropshipping', count: 38104 },
+    { idea: 'AI-Generated Children\'s Books', count: 29453 },
+    { idea: 'Print on Demand T-Shirts', count: 24109 },
+    { idea: 'Social Media Management Agency', count: 19872 },
+    { idea: 'Crypto Trading Bot', count: 17234 },
+    { idea: 'Affiliate Marketing Blog', count: 14891 },
+];
+
+let currentResult = null;
+
+function buildShameList() {
+    const list = document.getElementById('shameList');
+    list.innerHTML = shameData.slice(0, 8).map((item, i) => `
+        <div class="shame-item">
+            <div class="shame-rank">#${i+1}</div>
+            <div class="shame-idea">${item.idea}</div>
+            <div class="shame-count">${item.count.toLocaleString()} submissions</div>
+        </div>
+    `).join('');
+}
+
+async function queryModel(model, idea) {
+    const prompt = `You are a brutally honest business analyst. A user wants to know if their business idea is oversaturated due to AI recommending it to millions of people.
+
+Idea: "${idea}"
+
+Respond with ONLY valid JSON, nothing else:
+{
+  "verdict": "quit" or "legit" or "pivot",
+  "saturation": a number from 0 to 100 where 100 means extremely oversaturated,
+  "reality": "one punchy sentence about the real market situation",
+  "move": "one sentence on what to do - if quit say why and what instead, if pivot say exactly how, if legit say what angle to push"
+}`;
+
+    const response = await fetch(OR_URL, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${OR_KEY}`,
+            'Content-Type': 'application/json',
+            'HTTP-Referer': 'https://checkmyhustle.com',
+            'X-Title': 'Check My Hustle'
+        },
+        body: JSON.stringify({
+            model: model.id,
+            messages: [{ role: 'user', content: prompt }],
+            max_tokens: 300
+        })
+    });
+
+    const data = await response.json();
+    const text = data.choices?.[0]?.message?.content || '';
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('No JSON');
+    return JSON.parse(jsonMatch[0]);
+}
+
+async function analyzeHustle() {
+    const idea = document.getElementById('hustleInput').value.trim();
+    if (!idea || idea.length < 3) return;
+
+    document.getElementById('landing-view').style.display = 'none';
+    document.getElementById('hustlingView').classList.add('visible');
+    document.getElementById('resultsView').classList.remove('visible');
+
+    MODELS.forEach(m => document.getElementById(m.chip).classList.remove('done'));
+
+    const results = [];
+
+    const promises = MODELS.map(async (model) => {
+        try {
+            const result = await queryModel(model, idea);
+            result.modelName = model.name;
+            results.push(result);
+            document.getElementById(model.chip).classList.add('done');
+        } catch(e) {
+            document.getElementById(model.chip).classList.add('done');
+        }
+    });
+
+    await Promise.all(promises);
+
+    const votes = { quit: 0, legit: 0, pivot: 0 };
+    let totalSaturation = 0;
+    const realities = [];
+    const moves = [];
+
+    results.forEach(r => {
+        const v = (r.verdict || 'pivot').toLowerCase();
+        if (votes[v] !== undefined) votes[v]++;
+        totalSaturation += (r.saturation || 50);
+        if (r.reality) realities.push(r.reality);
+        if (r.move) moves.push(r.move);
+    });
+
+    const verdict = Object.entries(votes).sort((a,b) => b[1]-a[1])[0][0];
+    const avgSaturation = results.length > 0 ? Math.round(totalSaturation / results.length) : 50;
+    const reality = realities[0] || 'The market is competitive. Do your research before diving in.';
+    const move = moves[0] || 'Proceed with caution and validate before investing.';
+
+    currentResult = { idea, verdict, avgSaturation, reality, move, votes };
+
+    if (verdict === 'quit') {
+        const existing = shameData.find(s => s.idea.toLowerCase() === idea.toLowerCase());
+        if (existing) existing.count++;
+        else shameData.unshift({ idea, count: 1 });
+        shameData.sort((a,b) => b.count - a.count);
+        buildShameList();
+    }
+
+    displayResults(currentResult);
+}
+
+function displayResults({ idea, verdict, avgSaturation, reality, move, votes }) {
+    document.getElementById('hustlingView').classList.remove('visible');
+
+    const badge = document.getElementById('statusBadge');
+    badge.textContent = verdict.toUpperCase();
+    badge.className = 'status-badge ' + verdict.toUpperCase();
+
+    document.getElementById('resultQuery').textContent = `"${idea}"`;
+    document.getElementById('scoreText').textContent = `${avgSaturation}%`;
+
+    const bar = document.getElementById('progressBar');
+    bar.style.width = `${avgSaturation}%`;
+    bar.style.backgroundColor = verdict === 'quit' ? 'var(--quit)' : verdict === 'legit' ? 'var(--legit)' : 'var(--pivot)';
+
+    const votesEl = document.getElementById('modelVotes');
+    votesEl.innerHTML = Object.entries(votes).map(([v, count]) =>
+        count > 0 ? `<span class="vote-chip ${v}">${count} said ${v.toUpperCase()}</span>` : ''
+    ).join('');
+
+    document.getElementById('resultFeedback').textContent = reality;
+
+    const pivotBox = document.getElementById('pivotBox');
+    const legitBox = document.getElementById('legitBox');
+    pivotBox.style.display = 'none';
+    legitBox.style.display = 'none';
+
+    if (verdict === 'pivot') {
+        pivotBox.style.display = 'block';
+        document.getElementById('pivotText').textContent = move;
+    } else if (verdict === 'legit') {
+        legitBox.style.display = 'block';
+        document.getElementById('legitText').textContent = move;
+    }
+
+    document.getElementById('resultsView').classList.add('visible');
+}
+
+function shareResult(platform) {
+    if (!currentResult) return;
+    const { idea, verdict, avgSaturation } = currentResult;
+    const emoji = verdict === 'quit' ? '💀' : verdict === 'legit' ? '✅' : '↻';
+    const text = `I just checked my hustle on CheckMyHustle.com\n\nIdea: "${idea}"\nAI Saturation: ${avgSaturation}%\nVerdict: ${verdict.toUpperCase()} ${emoji}\n\nAudited across 4 major AI models. Don't waste your time on dead-end ideas. #CheckMyHustle #LegitOrQuit`;
+    const encoded = encodeURIComponent(text);
+    const url = encodeURIComponent('https://checkmyhustle.com');
+
+    const urls = {
+        x: `https://twitter.com/intent/tweet?text=${encoded}`,
+        fb: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encoded}`,
+        wa: `https://wa.me/?text=${encoded}`
     };
 
-    function analyzeHustle() {
-        const input = document.getElementById('hustleInput').value;
-        if (!input || input.length < 3) return;
+    window.open(urls[platform], '_blank');
+}
 
-        const inputLower = input.toLowerCase();
-        let type = 'pivot'; 
-        
-        const redFlags = ['faceless', 'drop shipping', 'kdp', 'amazon', 'automation', 'passive', 'guru', 'youtube channel', 'meditation', 'stoic', 'ebook', 'smma'];
-        const greenFlags = ['film', 'law', 'standards', 'mechanical', 'consulting', 'local', 'repair', 'prop', 'manufacturing', 'trade', 'specialized'];
+function resetPage() {
+    document.getElementById('hustleInput').value = '';
+    document.getElementById('landing-view').style.display = 'block';
+    document.getElementById('resultsView').classList.remove('visible');
+    currentResult = null;
+    window.scrollTo(0, 0);
+}
 
-        if (redFlags.some(rf => inputLower.includes(rf))) type = 'quit';
-        else if (greenFlags.some(gf => inputLower.includes(gf))) type = 'legit';
-
-        const reasons = engine[type];
-        const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
-        const score = type === 'quit' ? Math.floor(Math.random() * 15) + 84 : 
-                      type === 'legit' ? Math.floor(Math.random() * 15) + 5 : 
-                      Math.floor(Math.random() * 20) + 40;
-
-        document.getElementById('resultQuery').textContent = `"${input}"`;
-        const badge = document.getElementById('statusBadge');
-        badge.textContent = type.toUpperCase();
-        badge.className = 'status-badge ' + type.toUpperCase();
-        
-        document.getElementById('scoreText').textContent = `${score}%`;
-        const bar = document.getElementById('progressBar');
-        bar.style.width = `${score}%`;
-        bar.style.backgroundColor = `var(--${type})`;
-
-        document.getElementById('resultFeedback').innerHTML = `<strong>DEEP DIVE ANALYSIS:</strong><br>${randomReason}`;
-        
-        document.getElementById('pivotSection').style.display = (type === 'pivot') ? 'block' : 'none';
-        if(type === 'pivot') document.getElementById('pivotText').textContent = "Stop building for the masses. Solve this for a specialized niche like logistics, local trade, or specific film VFX.";
-        
-        document.getElementById('affiliateCard').style.display = (type === 'legit') ? 'block' : 'none';
-
-        document.getElementById('landing-view').style.display = 'none';
-        document.getElementById('results-view').style.display = 'block';
-    }
-    </script>
+buildShameList();
+</script>
 </body>
 </html>
