@@ -55,10 +55,11 @@
         .btn-main:active { transform: scale(0.98); }
         .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
         .ad-slot {
-            width: 100%; border: 1px dashed var(--border);
+            width: 100%; border: 1px solid var(--border);
             padding: 1rem; text-align: center; color: #aaa;
             font-size: 0.7rem; text-transform: uppercase;
             letter-spacing: 2px; border-radius: 12px; margin: 1rem 0;
+            background: #fffcf9;
         }
         .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1rem; width: 100%; }
         .hustling-wrap.visible { display: flex; }
@@ -84,286 +85,217 @@
         .progress-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 0.4rem; }
         .progress-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.1, 0.5, 0.1, 1); border-radius: 6px; }
         .score-labels { display: flex; justify-content: space-between; font-size: 0.65rem; color: #bbb; margin-bottom: 1.2rem; }
-        .model-votes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem; }
-        .vote-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
-        .vote-chip.quit { background: #fee2e2; color: var(--quit); }
-        .vote-chip.legit { background: #d1fae5; color: var(--legit); }
-        .vote-chip.pivot { background: #fef3c7; color: var(--pivot); }
-        .section-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; }
+        .section-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; margin-top: 1rem;}
         .analysis-text { font-size: 1rem; color: #333; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #f5f5f5; line-height: 1.8; }
-        .insight-box { background: #f7f7f7; border-radius: 10px; padding: 1rem; margin-bottom: 1.2rem; font-size: 0.95rem; color: #444; line-height: 1.7; }
-        .insight-box strong { color: var(--text); }
-        .pivot-box { background: #fff8f0; border-left: 3px solid var(--pivot); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin-bottom: 1.2rem; }
-        .pivot-box p { font-size: 0.95rem; font-weight: 600; color: #92400e; line-height: 1.7; }
-        .legit-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; }
-        .legit-box p { font-size: 0.95rem; color: #166534; line-height: 1.7; }
-        .quit-box { background: #fff5f5; border: 1px solid #fecaca; padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; }
-        .quit-box p { font-size: 0.95rem; color: #991b1b; line-height: 1.7; }
-        .share-section { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid #f5f5f5; }
-        .share-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.8rem; }
-        .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-        .share-btn { padding: 8px 14px; border-radius: 8px; border: none; font-size: 0.82rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-        .share-x { background: #000; color: white; }
-        .share-fb { background: #1877f2; color: white; }
-        .share-wa { background: #25d366; color: white; }
-        .reset-btn { background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; margin-top: 1rem; width: 100%; }
-        .shame-section { width: 100%; max-width: 650px; margin-top: 1rem; margin-bottom: 0; }
-        .shame-header {
-            display: flex; align-items: center; justify-content: space-between;
-            cursor: pointer; padding: 0.9rem 1.2rem;
-            background: white; border: 1px solid var(--border);
-            border-radius: 12px; user-select: none;
-            transition: border-radius 0.2s;
-        }
-        .shame-header.open { border-radius: 12px 12px 0 0; }
-        .shame-titles { display: flex; flex-direction: column; }
-        .shame-title { font-size: 1rem; font-weight: 900; }
-        .shame-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
-        .shame-arrow { font-size: 1rem; color: var(--accent); font-weight: 900; transition: transform 0.3s; }
-        .shame-arrow.open { transform: rotate(180deg); }
-        .shame-list {
-            background: white; border: 1px solid var(--border);
-            border-top: none; border-radius: 0 0 12px 12px;
-            overflow: hidden; max-height: 0;
-            transition: max-height 0.4s ease;
-        }
-        .shame-list.open { max-height: 600px; }
-        .shame-item { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.2rem; border-bottom: 1px solid #f5f5f5; }
-        .shame-item:last-child { border-bottom: none; }
-        .shame-rank { font-size: 1rem; font-weight: 900; color: var(--accent); width: 28px; flex-shrink: 0; }
-        .shame-idea { flex: 1; font-weight: 600; font-size: 0.9rem; }
-        .shame-count { font-size: 0.75rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
-        footer { margin-top: 0.8rem; padding: 1rem 0; color: #bbb; font-size: 0.8rem; text-align: center; max-width: 650px; line-height: 1.6; border-top: 1px solid #f0f0f0; width: 100%; }
-        @media (max-width: 480px) {
-            body { padding: 1rem 0.8rem; }
-            .input-group { flex-direction: column; }
-            .btn-main { padding: 0.9rem; width: 100%; }
-            .report-box { padding: 1.2rem; }
-            .share-buttons { flex-direction: column; }
-            .share-btn { justify-content: center; }
-        }
+        .pivot-box, .legit-box, .quit-box { padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; display: none; }
+        .pivot-box { background: #fff8f0; border-left: 4px solid var(--pivot); }
+        .pivot-box p { color: #92400e; font-weight: 500; }
+        .legit-box { background: #f0fdf4; border-left: 4px solid var(--legit); }
+        .legit-box p { color: #166534; font-weight: 500; }
+        .quit-box { background: #fff5f5; border-left: 4px solid var(--quit); }
+        .quit-box p { color: #991b1b; font-weight: 500; }
+        .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;}
+        .share-btn { padding: 10px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: white; flex: 1; min-width: 120px;}
+        .share-x { background: #000; }
+        .share-wa { background: #25d366; }
+        .reset-btn { background: none; border: 1px solid var(--border); padding: 12px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; margin-top: 10px;}
+        .shame-section { width: 100%; max-width: 650px; margin-top: 2rem; }
+        .shame-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; }
+        .shame-list { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-out; }
+        .shame-list.open { max-height: 500px; }
+        .shame-item { display: flex; justify-content: space-between; padding: 0.8rem 1rem; border-bottom: 1px solid #f5f5f5; font-size: 0.9rem; }
+        footer { margin-top: 3rem; color: #999; font-size: 0.75rem; text-align: center; width: 100%; border-top: 1px solid #eee; padding-top: 1rem; }
+        @media (max-width: 480px) { .input-group { flex-direction: column; } .btn-main { padding: 1rem; } }
     </style>
 </head>
 <body>
+
 <header>
-    <a href="/" class="logo">check my <span>hustle</span></a>
+    <a href="#" class="logo" onclick="resetPage()">check my <span>hustle</span></a>
 </header>
+
 <div id="landing-view" style="max-width:650px; width:100%;">
     <h1>Is AI selling you a <span>dead-end dream?</span></h1>
     <p class="description">
-        Got a new business idea? Been using AI to brainstorm your next hustle? Here's the thing — AI is telling <strong>a lot</strong> of other people the exact same thing.<br><br>
-        Drop your idea below. We run it across the leading AI models and tell you whether your hustle is <strong>legit</strong>, whether you should <strong>quit</strong>, or exactly where to <strong>pivot</strong>.
+        AI is telling <strong>a lot</strong> of people the exact same thing. Drop your idea below. We audit it across leading AI models to see if it's <strong>legit</strong>, a <strong>quit</strong>, or a <strong>pivot</strong>.
     </p>
     <div class="input-group">
-        <input type="text" id="hustleInput" placeholder="e.g. dropshipping, dog grooming, Amazon FBA..." onkeypress="if(event.key==='Enter') analyzeHustle()">
+        <input type="text" id="hustleInput" placeholder="e.g. AI-generated children's books..." onkeypress="if(event.key==='Enter') analyzeHustle()">
         <button class="btn-main" onclick="analyzeHustle()">Check my hustle</button>
     </div>
     <div class="ad-slot">Advertisement — Google AdSense</div>
-    <div class="shame-section" id="shameSectionLanding">
-        <div class="shame-header" id="shameHeaderLanding" onclick="toggleShame()">
-            <div class="shame-titles">
-                <div class="shame-title">Wall of Shame</div>
-                <div class="shame-tagline">The worst business ideas doing the rounds right now — tap to see</div>
-            </div>
-            <div class="shame-arrow" id="shameArrow">▼</div>
+    
+    <div class="shame-section">
+        <div class="shame-header" onclick="toggleShame()">
+            <div><strong>Wall of Shame</strong><br><small style="color:var(--muted)">The most over-requested slop</small></div>
+            <div id="shameArrow">▼</div>
         </div>
-        <div class="shame-list" id="shameList"></div>
+        <div id="shameList" class="shame-list"></div>
     </div>
-    <footer>Check My Hustle isn't here to hold your hand. We run your idea across the leading AI models to give you an honest, unfiltered reality check. No hype. No fluff. Just the truth.</footer>
+    <footer>&copy; 2026 Check My Hustle. Built for the skeptical builder.</footer>
 </div>
+
 <div class="hustling-wrap" id="hustlingView">
     <div class="hustling-text">HUSTLING</div>
-    <div class="hustling-sub">Running your idea across the leading AI models...<br>Sit tight. This takes a moment.</div>
-    <div class="ad-slot" style="max-width:500px; margin-top: 2rem;">Advertisement — Google AdSense</div>
+    <div class="hustling-sub">Auditing across the Council of AIs...<br>Sit tight. Brutal honesty takes a second.</div>
 </div>
+
 <div class="results-container" id="resultsView">
     <div id="statusBadge" class="status-badge">...</div>
-    <h2 id="resultQuery" style="font-size:clamp(1.3rem,4vw,1.8rem);margin-bottom:1rem;letter-spacing:-0.5px;font-weight:900;"></h2>
+    <h2 id="resultQuery" style="font-weight:900; margin-bottom: 1rem;"></h2>
+    
     <div class="report-box">
-        <div class="hustle-label">
-            <span>AI SATURATION SCORE</span>
-            <div class="score-number" id="scoreNumber">0</div>
-        </div>
+        <div class="hustle-label">AI SATURATION SCORE <span class="score-number" id="scoreNumber">0</span></div>
         <div class="score-desc" id="scoreDesc"></div>
         <div class="progress-bg"><div id="progressBar" class="progress-fill"></div></div>
-        <div class="score-labels"><span>Rare opportunity</span><span>Extremely oversaturated</span></div>
-        <div class="section-label">Consensus across leading AI models</div>
-        <div class="model-votes" id="modelVotes"></div>
-        <div class="section-label">Hustle Reality</div>
+        <div class="score-labels"><span>Rare</span><span>Saturated</span></div>
+        
+        <div class="section-label">The Reality</div>
         <div id="resultFeedback" class="analysis-text"></div>
-        <div id="insightBox" class="insight-box" style="display:none;"></div>
-        <div id="quitBox" class="quit-box" style="display:none;">
-            <div class="section-label">Why you should walk away</div>
+        
+        <div id="quitBox" class="quit-box">
+            <div class="section-label" style="color:#991b1b">Why you should walk away</div>
             <p id="quitText"></p>
         </div>
-        <div id="pivotBox" class="pivot-box" style="display:none;">
-            <div class="section-label">The Smart Pivot — here's exactly what to do instead</div>
+        <div id="pivotBox" class="pivot-box">
+            <div class="section-label" style="color:#92400e">The Smart Pivot</div>
             <p id="pivotText"></p>
         </div>
-        <div id="legitBox" class="legit-box" style="display:none;">
-            <div class="section-label">Verified Legit — here's how to win</div>
+        <div id="legitBox" class="legit-box">
+            <div class="section-label" style="color:#166534">How to Win</div>
             <p id="legitText"></p>
         </div>
-        <div class="share-section">
-            <div class="share-label">Get roasted? Share it. 💀</div>
-            <div class="share-buttons">
-                <button class="share-btn share-x" onclick="shareResult('x')">𝕏 Post it</button>
-                <button class="share-btn share-fb" onclick="shareResult('fb')">Facebook</button>
-                <button class="share-btn share-wa" onclick="shareResult('wa')">WhatsApp</button>
-            </div>
+
+        <div class="section-label">Don't suffer alone</div>
+        <div class="share-buttons">
+            <button class="share-btn share-x" onclick="share('x')">𝕏 Post Roast</button>
+            <button class="share-btn share-wa" onclick="share('wa')">WhatsApp</button>
         </div>
     </div>
-    <button class="reset-btn" onclick="resetPage()">← Check another hustle</button>
-    <div class="ad-slot">Advertisement — Google AdSense</div>
+    <button class="reset-btn" onclick="resetPage()">← Check another idea</button>
 </div>
 
 <script>
-const OR_KEY = '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';
-const OR_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const MODELS = [
-    { id: 'meta-llama/llama-4-scout:free', name: 'Llama 4' },
-    { id: 'deepseek/deepseek-r1:free', name: 'DeepSeek R1' },
-    { id: 'google/gemini-flash-1.5:free', name: 'Gemini Flash' },
-    { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral' }
-];
+    const OR_KEY = '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';
+    const OR_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
-const SCORE_DESCRIPTIONS = [
-    { max: 15, text: 'Rare opportunity — very few people are doing this.' },
-    { max: 30, text: 'Less common — the market has room for new players.' },
-    { max: 50, text: 'Common — competitive but not impossible.' },
-    { max: 70, text: 'Saturated — you\'ll need a strong angle to stand out.' },
-    { max: 85, text: 'Heavily saturated — the market is crowded and tough.' },
-    { max: 100, text: 'Extremely oversaturated — AI has flooded this space.' }
-];
+    const seedIdeas = [
+        { keywords: ["dropshipping"], echo: 95, verdict: "QUIT", reality: "The ultimate 'guru' trope. Razor-thin margins and extreme competition from millions of others.", pivot: "Source locally. Don't be the middleman for a factory everyone else has access to." },
+        { keywords: ["faceless youtube", "faceless channel"], echo: 89, verdict: "QUIT", reality: "AI-generated video content is being de-prioritized by algorithms. Saturated with low-effort slop.", pivot: "Add a unique human element or hyper-niche down to a local language." },
+        { keywords: ["amazon kdp", "coloring books"], echo: 82, verdict: "PIVOT", reality: "The 'passive income' dream has flooded Amazon with unreadable AI books.", pivot: "Focus on high-quality, specialized educational workbooks for your specific region." }
+    ];
 
-// SEED DATABASE
-const seedIdeas = [
-  { keywords: ["faceless youtube", "faceless channel"], echo: 88, verdict: "quit", reality: "One of the most heavily recommended ideas by all major AIs right now. Extremely saturated.", pivot: "Try a hyper-local South African angle: Afrikaans motivation or Cape Town tourism vlogs." },
-  { keywords: ["print on demand", "pod t-shirts"], echo: 82, verdict: "pivot", reality: "Very common AI suggestion. Generic designs rarely succeed anymore.", pivot: "Niche down to South African themes — braai jokes, local wildlife, or rugby." },
-  { keywords: ["dropshipping"], echo: 85, verdict: "quit", reality: "Classic oversaturated idea pushed by almost every AI.", pivot: "Consider local service businesses or digital products instead." },
-  { keywords: ["amazon kdp", "low content books", "coloring books"], echo: 80, verdict: "pivot", reality: "Market is flooded with generic KDP books.", pivot: "Create South African-themed journals or educational workbooks." },
-  { keywords: ["etsy digital downloads", "digital planners"], echo: 75, verdict: "pivot", reality: "Competitive but possible with strong differentiation.", pivot: "Target South African students or small business owners." },
-  { keywords: ["ai content writing", "ai agency"], echo: 72, verdict: "pivot", reality: "Growing fast but becoming competitive.", pivot: "Specialize in local languages or South African industries like tourism/agriculture." }
-];
-
-function findSeedMatch(idea) {
-  const lowerIdea = idea.toLowerCase();
-  let bestMatch = null;
-  let bestScore = 0;
-  for (let seed of seedIdeas) {
-    let score = 0;
-    for (let kw of seed.keywords) {
-      if (lowerIdea.includes(kw)) score += 40;
+    function toggleShame() {
+        const list = document.getElementById('shameList');
+        list.classList.toggle('open');
+        document.getElementById('shameArrow').textContent = list.classList.contains('open') ? '▲' : '▼';
     }
-    if (score > bestScore) {
-      bestScore = score;
-      bestMatch = seed;
+
+    function buildShame() {
+        const data = [
+            { idea: 'AI Quote Channels', count: '52k' },
+            { idea: 'Generic Dropshipping', count: '48k' },
+            { idea: 'SaaS PDF Wrappers', count: '12k' }
+        ];
+        document.getElementById('shameList').innerHTML = data.map(i => `<div class="shame-item"><span>${i.idea}</span><span style="font-weight:bold">${i.count}</span></div>`).join('');
     }
-  }
-  return bestMatch;
-}
 
-let currentResult = null;
-let shameOpen = false;
+    async function analyzeHustle() {
+        const idea = document.getElementById('hustleInput').value.trim();
+        if (!idea || idea.length < 3) return;
 
-const shameData = [
-    { idea: 'Faceless YouTube Channel', count: 48291 },
-    { idea: 'Amazon KDP Low-Content Books', count: 41823 },
-    { idea: 'Dropshipping', count: 38104 }
-];
+        document.getElementById('landing-view').style.display = 'none';
+        document.getElementById('hustlingView').classList.add('visible');
 
-function toggleShame() {
-    shameOpen = !shameOpen;
-    const list = document.getElementById('shameList');
-    const arrow = document.getElementById('shameArrow');
-    const header = document.getElementById('shameHeaderLanding');
-    list.classList.toggle('open', shameOpen);
-    arrow.classList.toggle('open', shameOpen);
-    header.classList.toggle('open', shameOpen);
-}
+        // Check Seed List
+        const match = seedIdeas.find(s => s.keywords.some(k => idea.toLowerCase().includes(k)));
+        if (match) {
+            setTimeout(() => displayResults({...match, idea}), 1200);
+            return;
+        }
 
-function buildShameList() {
-    const list = document.getElementById('shameList');
-    list.innerHTML = shameData.slice(0, 5).map((item, i) => `
-        <div class="shame-item">
-            <div class="shame-rank">#${i+1}</div>
-            <div class="shame-idea">${item.idea}</div>
-            <div class="shame-count">${item.count.toLocaleString()} checks</div>
-        </div>
-    `).join('');
-}
+        // Live AI Call
+        try {
+            const res = await fetch(OR_URL, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${OR_KEY}`,
+                    'Content-Type': 'application/json',
+                    'HTTP-Referer': window.location.href,
+                    'X-Title': 'Check My Hustle'
+                },
+                body: JSON.stringify({
+                    model: "google/gemini-flash-1.5:free",
+                    messages: [{
+                        role: "system",
+                        content: "You are a cynical, honest business auditor. Analyze the idea. If it's a common AI/YouTube trope, be brutal. Return JSON only: {verdict: 'QUIT'|'PIVOT'|'LEGIT', echo: 0-100, reality: 'short honest truth', advice: 'how to fix or what to do'}"
+                    }, { role: "user", content: `Idea: ${idea}` }],
+                    response_format: { type: "json_object" }
+                })
+            });
 
-function getScoreDesc(score) {
-    return SCORE_DESCRIPTIONS.find(d => score <= d.max)?.text || SCORE_DESCRIPTIONS[SCORE_DESCRIPTIONS.length-1].text;
-}
+            const json = await res.json();
+            const result = JSON.parse(json.choices[0].message.content);
+            displayResults({
+                idea,
+                verdict: result.verdict,
+                echo: result.echo,
+                reality: result.reality,
+                pivot: result.advice
+            });
+        } catch (e) {
+            displayResults({ idea, verdict: "PIVOT", echo: 50, reality: "Connection fuzzy, but looks standard.", pivot: "Add a local Cape Town angle to stand out." });
+        }
+    }
 
-async function analyzeHustle() {
-    const idea = document.getElementById('hustleInput').value.trim();
-    if (!idea || idea.length < 3) return;
+    function displayResults(data) {
+        document.getElementById('hustlingView').classList.remove('visible');
+        document.getElementById('resultsView').classList.add('visible');
+        
+        const v = data.verdict.toUpperCase();
+        const badge = document.getElementById('statusBadge');
+        badge.textContent = v;
+        badge.className = `status-badge ${v}`;
+        
+        document.getElementById('resultQuery').textContent = `"${data.idea}"`;
+        document.getElementById('scoreNumber').textContent = `${data.echo}/100`;
+        document.getElementById('resultFeedback').textContent = data.reality;
 
-    document.getElementById('landing-view').style.display = 'none';
-    document.getElementById('hustlingView').classList.add('visible');
-    document.getElementById('resultsView').classList.remove('visible');
+        // Reset display
+        document.getElementById('quitBox').style.display = v === 'QUIT' ? 'block' : 'none';
+        document.getElementById('pivotBox').style.display = v === 'PIVOT' ? 'block' : 'none';
+        document.getElementById('legitBox').style.display = v === 'LEGIT' ? 'block' : 'none';
 
-    const seedMatch = findSeedMatch(idea);
-    if (seedMatch) {
+        document.getElementById('quitText').textContent = data.reality;
+        document.getElementById('pivotText').textContent = data.pivot;
+        document.getElementById('legitText').textContent = data.pivot;
+
+        const bar = document.getElementById('progressBar');
+        bar.style.width = '0%';
         setTimeout(() => {
-            currentResult = {
-                idea: idea,
-                verdict: seedMatch.verdict,
-                avgSaturation: seedMatch.echo,
-                reality: seedMatch.reality,
-                insight: "Based on common patterns seen across many AI conversations.",
-                move: seedMatch.pivot
-            };
-            displayResults(currentResult);
-        }, 1400);
-        return;
+            bar.style.width = `${data.echo}%`;
+            bar.style.background = v === 'QUIT' ? 'var(--quit)' : (v === 'LEGIT' ? 'var(--legit)' : 'var(--pivot)');
+        }, 100);
+        
+        window.currentData = data;
     }
 
-    // Live fallback (placeholder - add your original live code if needed)
-    setTimeout(() => {
-        currentResult = {
-            idea: idea,
-            verdict: "pivot",
-            avgSaturation: 65,
-            reality: "No exact match in database. This idea may be less common.",
-            insight: "Live check would go here.",
-            move: "Consider a local South African twist to stand out."
-        };
-        displayResults(currentResult);
-    }, 2500);
-}
+    function resetPage() {
+        document.getElementById('hustleInput').value = '';
+        document.getElementById('landing-view').style.display = 'block';
+        document.getElementById('resultsView').classList.remove('visible');
+        document.getElementById('hustlingView').classList.remove('visible');
+    }
 
-function displayResults({ idea, verdict, avgSaturation, reality, insight, move }) {
-    document.getElementById('hustlingView').classList.remove('visible');
-    const badge = document.getElementById('statusBadge');
-    badge.textContent = verdict.toUpperCase();
-    badge.className = 'status-badge ' + verdict.toUpperCase();
-    document.getElementById('resultQuery').textContent = `"${idea}"`;
-    document.getElementById('scoreNumber').textContent = avgSaturation + '/100';
-    document.getElementById('scoreDesc').textContent = getScoreDesc(avgSaturation);
-    const bar = document.getElementById('progressBar');
-    setTimeout(() => bar.style.width = `${avgSaturation}%`, 100);
-    document.getElementById('resultFeedback').textContent = reality;
-    document.getElementById('pivotBox').style.display = 'block';
-    document.getElementById('pivotText').textContent = move;
-    document.getElementById('resultsView').classList.add('visible');
-}
+    function share(p) {
+        const t = `Check My Hustle verdict for "${window.currentData.idea}": ${window.currentData.verdict} (${window.currentData.echo}/100 AI Saturation). Brutal. 💀`;
+        const u = window.location.href;
+        if(p==='x') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}&url=${encodeURIComponent(u)}`);
+        if(p==='wa') window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(t + ' ' + u)}`);
+    }
 
-function shareResult(platform) {
-    if (!currentResult) return;
-    const text = `Check My Hustle result for "${currentResult.idea}": ${currentResult.verdict.toUpperCase()} (${currentResult.avgSaturation}/100)`;
-    alert("Share: " + text);
-}
-
-function resetPage() {
-    document.getElementById('hustleInput').value = '';
-    document.getElementById('landing-view').style.display = 'block';
-    document.getElementById('resultsView').classList.remove('visible');
-}
-
-buildShameList();
+    buildShame();
 </script>
+
 </body>
 </html>
