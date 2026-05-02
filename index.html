@@ -51,18 +51,19 @@
 
         .ad-slot { width: 100%; border: 1px dashed var(--border); padding: 1.2rem; text-align: center; color: #aaa; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 12px; margin: 1.5rem 0; }
 
-        .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 0; width: 100%; }
+        .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 0; width: 100%; }
         .hustling-wrap.visible { display: flex; }
-        .hustling-text { font-size: 3rem; font-weight: 900; color: var(--accent); letter-spacing: -1px; animation: hustle-flash 0.8s ease-in-out infinite; }
-        .hustling-sub { font-size: 0.85rem; color: var(--muted); margin-top: 1rem; text-align: center; max-width: 300px; line-height: 1.6; }
-        @keyframes hustle-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+        .hustling-text { font-size: 3.5rem; font-weight: 900; color: var(--accent); letter-spacing: -2px; animation: hustle-flash 1s ease-in-out infinite; }
+        .hustling-sub { font-size: 0.85rem; color: var(--muted); margin-top: 1.2rem; text-align: center; max-width: 320px; line-height: 1.7; }
+        @keyframes hustle-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.08; } }
 
         .model-checks { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center; }
-        .model-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: white; transition: all 0.3s; }
+        .model-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: white; transition: all 0.4s; }
         .model-chip.done { background: var(--accent); color: white; border-color: var(--accent); }
 
         .results-container { display: none; width: 100%; max-width: 650px; }
-        .results-container.visible { display: block; }
+        .results-container.visible { display: block; animation: fadeUp 0.4s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .status-badge { display: inline-block; padding: 6px 16px; border-radius: 6px; font-weight: 900; font-size: 0.9rem; margin-bottom: 0.8rem; color: white; }
         .status-badge.QUIT { background-color: var(--quit); }
@@ -70,9 +71,15 @@
         .status-badge.LEGIT { background-color: var(--legit); }
 
         .report-box { background: white; border: 1px solid var(--border); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.5rem; }
-        .hustle-label { display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--muted); }
-        .progress-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 1.5rem; }
-        .progress-fill { height: 100%; width: 0%; transition: width 1.2s cubic-bezier(0.1, 0.5, 0.1, 1); }
+
+        .hustle-label { display: flex; justify-content: space-between; align-items: center; font-weight: 800; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--muted); }
+        .score-number { font-size: 2rem; font-weight: 900; color: var(--text); }
+        .score-desc { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-bottom: 1rem; }
+
+        .progress-bg { height: 14px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; }
+        .progress-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.1, 0.5, 0.1, 1); border-radius: 6px; }
+
+        .score-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: #bbb; margin-bottom: 1.5rem; }
 
         .model-votes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .vote-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
@@ -80,19 +87,19 @@
         .vote-chip.legit { background: #d1fae5; color: var(--legit); }
         .vote-chip.pivot { background: #fef3c7; color: var(--pivot); }
 
-        .section-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; }
-        .analysis-text { font-size: 1.05rem; color: #333; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f5f5f5; line-height: 1.7; }
+        .section-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.6rem; }
+        .analysis-text { font-size: 1.05rem; color: #333; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f5f5f5; line-height: 1.8; }
 
         .pivot-box { background: #fff8f0; border-left: 3px solid var(--pivot); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem; }
-        .pivot-box p { font-size: 1rem; font-weight: 600; color: #92400e; }
+        .pivot-box p { font-size: 1rem; font-weight: 600; color: #92400e; line-height: 1.7; }
 
         .legit-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.2rem; border-radius: 12px; margin-bottom: 1.5rem; }
-        .legit-box p { font-size: 0.95rem; color: #166534; }
+        .legit-box p { font-size: 0.95rem; color: #166534; line-height: 1.7; }
 
-        .share-section { margin-top: 1.5rem; }
+        .share-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f5f5f5; }
         .share-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.8rem; }
         .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-        .share-btn { padding: 8px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+        .share-btn { padding: 8px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
         .share-x { background: #000; color: white; }
         .share-fb { background: #1877f2; color: white; }
         .share-wa { background: #25d366; color: white; }
@@ -100,22 +107,26 @@
         .reset-btn { background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; margin-top: 1rem; width: 100%; }
 
         .shame-section { width: 100%; max-width: 650px; margin-top: 2rem; }
-        .shame-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.3rem; }
-        .shame-subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
-        .shame-list { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+        .shame-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 1rem 1.2rem; background: white; border: 1px solid var(--border); border-radius: 12px; user-select: none; }
+        .shame-header.open { border-radius: 12px 12px 0 0; border-bottom: none; }
+        .shame-title { font-size: 1.1rem; font-weight: 900; }
+        .shame-toggle { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+        .shame-subtitle { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1.2rem; background: white; border-left: 1px solid var(--border); border-right: 1px solid var(--border); display: none; }
+        .shame-list { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; display: none; }
+        .shame-list.open { display: block; }
         .shame-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border-bottom: 1px solid #f5f5f5; }
         .shame-item:last-child { border-bottom: none; }
-        .shame-rank { font-size: 1.2rem; font-weight: 900; color: var(--accent); width: 28px; flex-shrink: 0; }
+        .shame-rank { font-size: 1.1rem; font-weight: 900; color: var(--accent); width: 28px; flex-shrink: 0; }
         .shame-idea { flex: 1; font-weight: 600; font-size: 0.95rem; }
         .shame-count { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
 
-        footer { margin-top: 3rem; padding: 2rem 0; color: #bbb; font-size: 0.85rem; text-align: center; max-width: 650px; line-height: 1.4; border-top: 1px solid #f0f0f0; width: 100%; }
+        footer { margin-top: 3rem; padding: 2rem 0; color: #bbb; font-size: 0.85rem; text-align: center; max-width: 650px; line-height: 1.6; border-top: 1px solid #f0f0f0; width: 100%; }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.3rem; }
             .input-group { flex-direction: column; }
             .btn-main { padding: 1.1rem; }
-            .hustling-text { font-size: 2.2rem; }
+            .hustling-text { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -129,7 +140,7 @@
     <h1>Is AI selling you a <span>dead-end dream?</span></h1>
     <p class="description">
         Got a new business idea? Been using AI to brainstorm your next hustle? Here's the thing — AI is telling <strong>a lot</strong> of other people the exact same thing.<br><br>
-        Drop your idea below. We'll run it across <strong>4 major AI models</strong> simultaneously and tell you whether your hustle is <strong>legit</strong>, whether you should <strong>quit</strong>, or exactly where to <strong>pivot</strong>.
+        Drop your idea below. We run it across the leading AI models and tell you whether your hustle is <strong>legit</strong>, whether you should <strong>quit</strong>, or exactly where to <strong>pivot</strong>.
     </p>
     <div class="input-group">
         <input type="text" id="hustleInput" placeholder="Describe your business idea..." onkeypress="if(event.key==='Enter') analyzeHustle()">
@@ -140,7 +151,7 @@
 
 <div class="hustling-wrap" id="hustlingView">
     <div class="hustling-text">HUSTLING</div>
-    <div class="hustling-sub">Querying 4 AI models simultaneously...<br>This takes about 10 seconds.</div>
+    <div class="hustling-sub">Running your idea across the leading AI models...<br>Sit tight. This takes a moment.</div>
     <div class="model-checks">
         <div class="model-chip" id="chip-llama">Llama 4</div>
         <div class="model-chip" id="chip-deepseek">DeepSeek R1</div>
@@ -151,16 +162,18 @@
 
 <div class="results-container" id="resultsView">
     <div id="statusBadge" class="status-badge">...</div>
-    <h2 id="resultQuery" style="font-size: 1.8rem; margin-bottom: 1.2rem; letter-spacing: -0.5px; font-weight: 900;"></h2>
+    <h2 id="resultQuery" style="font-size:1.8rem;margin-bottom:1.2rem;letter-spacing:-0.5px;font-weight:900;"></h2>
 
     <div class="report-box">
         <div class="hustle-label">
             <span>AI SATURATION SCORE</span>
-            <span id="scoreText">0%</span>
+            <div class="score-number" id="scoreNumber">0</div>
         </div>
+        <div class="score-desc" id="scoreDesc"></div>
         <div class="progress-bg"><div id="progressBar" class="progress-fill"></div></div>
+        <div class="score-labels"><span>Rare opportunity</span><span>Extremely oversaturated</span></div>
 
-        <div class="section-label">Audited across 4 AI models</div>
+        <div class="section-label">Consensus across leading AI models</div>
         <div class="model-votes" id="modelVotes"></div>
 
         <div class="section-label">Hustle Reality</div>
@@ -172,7 +185,7 @@
         </div>
 
         <div id="legitBox" class="legit-box" style="display:none;">
-            <div class="section-label">✅ Verified Legit</div>
+            <div class="section-label">Verified Legit</div>
             <p id="legitText"></p>
         </div>
 
@@ -191,13 +204,16 @@
 </div>
 
 <div class="shame-section" id="shameSection">
-    <div class="shame-title">🔥 Wall of Shame</div>
-    <div class="shame-subtitle">The most recycled AI hustle ideas — submitted by real people this week.</div>
+    <div class="shame-header" id="shameHeader" onclick="toggleShame()">
+        <div class="shame-title">Wall of Shame</div>
+        <div class="shame-toggle" id="shameToggle">Show ↓</div>
+    </div>
+    <div class="shame-subtitle" id="shameSubtitle">The most recycled AI hustle ideas — submitted by real people.</div>
     <div class="shame-list" id="shameList"></div>
 </div>
 
 <footer>
-    Check My Hustle isn't here to hold your hand. We cross-reference your idea across 4 major AI models to see if it's original or a recycled AI hallucination. Audited by Llama 4, DeepSeek R1, Gemini Flash & Mistral.
+    Check My Hustle isn't here to hold your hand. We run your idea across leading AI models to give you an honest, unfiltered reality check. No hype. No fluff. Just the truth.
 </footer>
 
 <script>
@@ -209,6 +225,15 @@ const MODELS = [
     { id: 'deepseek/deepseek-r1:free', name: 'DeepSeek R1', chip: 'chip-deepseek' },
     { id: 'google/gemini-flash-1.5:free', name: 'Gemini Flash', chip: 'chip-gemini' },
     { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral', chip: 'chip-mistral' }
+];
+
+const SCORE_DESCRIPTIONS = [
+    { max: 15, text: 'Rare opportunity — very few people are doing this.' },
+    { max: 30, text: 'Less common — the market has room for new players.' },
+    { max: 50, text: 'Common — competitive but not impossible.' },
+    { max: 70, text: 'Saturated — you\'ll need a strong angle to stand out.' },
+    { max: 85, text: 'Heavily saturated — the market is crowded and tough.' },
+    { max: 100, text: 'Extremely oversaturated — AI has flooded this space.' }
 ];
 
 const shameData = [
@@ -223,6 +248,19 @@ const shameData = [
 ];
 
 let currentResult = null;
+let shameOpen = false;
+
+function toggleShame() {
+    shameOpen = !shameOpen;
+    const list = document.getElementById('shameList');
+    const subtitle = document.getElementById('shameSubtitle');
+    const toggle = document.getElementById('shameToggle');
+    const header = document.getElementById('shameHeader');
+    list.classList.toggle('open', shameOpen);
+    subtitle.style.display = shameOpen ? 'block' : 'none';
+    toggle.textContent = shameOpen ? 'Hide ↑' : 'Show ↓';
+    header.classList.toggle('open', shameOpen);
+}
 
 function buildShameList() {
     const list = document.getElementById('shameList');
@@ -235,17 +273,30 @@ function buildShameList() {
     `).join('');
 }
 
+function getScoreDesc(score) {
+    return SCORE_DESCRIPTIONS.find(d => score <= d.max)?.text || SCORE_DESCRIPTIONS[SCORE_DESCRIPTIONS.length-1].text;
+}
+
 async function queryModel(model, idea) {
-    const prompt = `You are a brutally honest business analyst. A user wants to know if their business idea is oversaturated due to AI recommending it to millions of people.
+    const prompt = `You are a brutally honest, deeply knowledgeable business analyst with expertise in market saturation, startup trends, and the impact of AI on business ideas.
 
-Idea: "${idea}"
+A person wants to know if their business idea is worth pursuing, or whether AI is recommending it to so many people that it has become oversaturated and unviable.
 
-Respond with ONLY valid JSON, nothing else:
+Business idea: "${idea}"
+
+Think carefully and thoroughly before responding. Consider:
+- How common is this idea in the current market?
+- How many people are likely pursuing this right now?
+- What are the real barriers to success?
+- Is there a smarter angle or pivot?
+- What does the honest truth look like for someone considering this?
+
+Respond with ONLY valid JSON, nothing else, no explanation before or after:
 {
   "verdict": "quit" or "legit" or "pivot",
-  "saturation": a number from 0 to 100 where 100 means extremely oversaturated,
-  "reality": "one punchy sentence about the real market situation",
-  "move": "one sentence on what to do - if quit say why and what instead, if pivot say exactly how, if legit say what angle to push"
+  "saturation": a number from 0 to 100 where 100 means the worst most oversaturated idea imaginable,
+  "reality": "two to three sentences of brutally honest specific market reality. No fluff. Real talk about what this person is actually facing.",
+  "move": "two sentences on what to actually do. If quit: explain why clearly and suggest a better direction. If pivot: give a specific actionable repositioning. If legit: give the exact angle they should push hard on to win."
 }`;
 
     const response = await fetch(OR_URL, {
@@ -259,7 +310,7 @@ Respond with ONLY valid JSON, nothing else:
         body: JSON.stringify({
             model: model.id,
             messages: [{ role: 'user', content: prompt }],
-            max_tokens: 300
+            max_tokens: 500
         })
     });
 
@@ -277,10 +328,10 @@ async function analyzeHustle() {
     document.getElementById('landing-view').style.display = 'none';
     document.getElementById('hustlingView').classList.add('visible');
     document.getElementById('resultsView').classList.remove('visible');
-
     MODELS.forEach(m => document.getElementById(m.chip).classList.remove('done'));
 
     const results = [];
+    const minTime = new Promise(resolve => setTimeout(resolve, 6000));
 
     const promises = MODELS.map(async (model) => {
         try {
@@ -293,7 +344,7 @@ async function analyzeHustle() {
         }
     });
 
-    await Promise.all(promises);
+    await Promise.all([Promise.all(promises), minTime]);
 
     const votes = { quit: 0, legit: 0, pivot: 0 };
     let totalSaturation = 0;
@@ -311,7 +362,7 @@ async function analyzeHustle() {
     const verdict = Object.entries(votes).sort((a,b) => b[1]-a[1])[0][0];
     const avgSaturation = results.length > 0 ? Math.round(totalSaturation / results.length) : 50;
     const reality = realities[0] || 'The market is competitive. Do your research before diving in.';
-    const move = moves[0] || 'Proceed with caution and validate before investing.';
+    const move = moves[0] || 'Proceed with caution and validate before investing time or money.';
 
     currentResult = { idea, verdict, avgSaturation, reality, move, votes };
 
@@ -334,10 +385,11 @@ function displayResults({ idea, verdict, avgSaturation, reality, move, votes }) 
     badge.className = 'status-badge ' + verdict.toUpperCase();
 
     document.getElementById('resultQuery').textContent = `"${idea}"`;
-    document.getElementById('scoreText').textContent = `${avgSaturation}%`;
+    document.getElementById('scoreNumber').textContent = avgSaturation + '/100';
+    document.getElementById('scoreDesc').textContent = getScoreDesc(avgSaturation);
 
     const bar = document.getElementById('progressBar');
-    bar.style.width = `${avgSaturation}%`;
+    setTimeout(() => { bar.style.width = `${avgSaturation}%`; }, 100);
     bar.style.backgroundColor = verdict === 'quit' ? 'var(--quit)' : verdict === 'legit' ? 'var(--legit)' : 'var(--pivot)';
 
     const votesEl = document.getElementById('modelVotes');
@@ -347,17 +399,17 @@ function displayResults({ idea, verdict, avgSaturation, reality, move, votes }) 
 
     document.getElementById('resultFeedback').textContent = reality;
 
-    const pivotBox = document.getElementById('pivotBox');
-    const legitBox = document.getElementById('legitBox');
-    pivotBox.style.display = 'none';
-    legitBox.style.display = 'none';
+    document.getElementById('pivotBox').style.display = 'none';
+    document.getElementById('legitBox').style.display = 'none';
 
     if (verdict === 'pivot') {
-        pivotBox.style.display = 'block';
+        document.getElementById('pivotBox').style.display = 'block';
         document.getElementById('pivotText').textContent = move;
     } else if (verdict === 'legit') {
-        legitBox.style.display = 'block';
+        document.getElementById('legitBox').style.display = 'block';
         document.getElementById('legitText').textContent = move;
+    } else {
+        document.getElementById('resultFeedback').textContent = reality + ' ' + move;
     }
 
     document.getElementById('resultsView').classList.add('visible');
@@ -367,16 +419,14 @@ function shareResult(platform) {
     if (!currentResult) return;
     const { idea, verdict, avgSaturation } = currentResult;
     const emoji = verdict === 'quit' ? '💀' : verdict === 'legit' ? '✅' : '↻';
-    const text = `I just checked my hustle on CheckMyHustle.com\n\nIdea: "${idea}"\nAI Saturation: ${avgSaturation}%\nVerdict: ${verdict.toUpperCase()} ${emoji}\n\nAudited across 4 major AI models. Don't waste your time on dead-end ideas. #CheckMyHustle #LegitOrQuit`;
+    const text = `I just checked my hustle on CheckMyHustle.com\n\nIdea: "${idea}"\nSaturation Score: ${avgSaturation}/100\nVerdict: ${verdict.toUpperCase()} ${emoji}\n\nDon't waste your time on dead-end ideas. Check yours free. #CheckMyHustle #LegitOrQuit`;
     const encoded = encodeURIComponent(text);
     const url = encodeURIComponent('https://checkmyhustle.com');
-
     const urls = {
         x: `https://twitter.com/intent/tweet?text=${encoded}`,
         fb: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encoded}`,
         wa: `https://wa.me/?text=${encoded}`
     };
-
     window.open(urls[platform], '_blank');
 }
 
