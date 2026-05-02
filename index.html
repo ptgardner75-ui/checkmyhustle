@@ -28,38 +28,57 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
 
-        header { width: 100%; max-width: 700px; margin-bottom: 2rem; }
+        header { width: 100%; max-width: 700px; margin-bottom: 1.5rem; }
         .logo { font-weight: 900; font-size: 1.3rem; color: var(--text); text-decoration: none; text-transform: lowercase; }
         .logo span { color: var(--accent); }
 
-        h1 { font-size: 3.2rem; line-height: 1.1; margin-bottom: 1.2rem; font-weight: 900; letter-spacing: -2px; }
+        h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; margin-bottom: 1rem; font-weight: 900; letter-spacing: -2px; }
         h1 span { color: var(--accent); }
 
-        .description { font-size: 1.15rem; color: var(--muted); margin-bottom: 2rem; }
+        .description { font-size: clamp(0.95rem, 2.5vw, 1.15rem); color: var(--muted); margin-bottom: 1.5rem; }
         .description strong { color: var(--text); }
 
-        .input-group { display: flex; gap: 10px; margin-bottom: 1.5rem; }
-        input[type="text"] { flex: 1; padding: 1.1rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1.1rem; outline: none; background: white; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 1.2rem; }
+        input[type="text"] {
+            flex: 1; padding: 0.9rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            outline: none; background: white;
+            min-width: 0;
+        }
         input[type="text"]:focus { border-color: var(--accent); }
 
-        .btn-main { background-color: var(--accent); color: white; border: none; padding: 0 1.8rem; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1rem; transition: transform 0.1s; }
+        .btn-main {
+            background-color: var(--accent); color: white;
+            border: none; padding: 0 1.4rem;
+            border-radius: 12px; font-weight: 700;
+            cursor: pointer; font-size: clamp(0.85rem, 2vw, 1rem);
+            transition: transform 0.1s; white-space: nowrap;
+        }
         .btn-main:active { transform: scale(0.98); }
         .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .ad-slot { width: 100%; border: 1px dashed var(--border); padding: 1.2rem; text-align: center; color: #aaa; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 12px; margin: 1.5rem 0; }
+        .ad-slot {
+            width: 100%; border: 1px dashed var(--border);
+            padding: 1rem; text-align: center; color: #aaa;
+            font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 2px; border-radius: 12px; margin: 1rem 0;
+        }
 
-        .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 0; width: 100%; }
+        .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1rem; width: 100%; }
         .hustling-wrap.visible { display: flex; }
-        .hustling-text { font-size: 3.5rem; font-weight: 900; color: var(--accent); letter-spacing: -2px; animation: hustle-flash 1s ease-in-out infinite; }
-        .hustling-sub { font-size: 0.85rem; color: var(--muted); margin-top: 1.2rem; text-align: center; max-width: 320px; line-height: 1.7; }
+        .hustling-text {
+            font-size: clamp(2.5rem, 10vw, 4rem);
+            font-weight: 900; color: var(--accent);
+            letter-spacing: -2px;
+            animation: hustle-flash 1s ease-in-out infinite;
+        }
+        .hustling-sub { font-size: 0.9rem; color: var(--muted); margin-top: 1rem; text-align: center; max-width: 300px; line-height: 1.7; }
         @keyframes hustle-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.08; } }
-
-        .model-checks { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center; }
-        .model-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: white; transition: all 0.4s; }
-        .model-chip.done { background: var(--accent); color: white; border-color: var(--accent); }
 
         .results-container { display: none; width: 100%; max-width: 650px; }
         .results-container.visible { display: block; animation: fadeUp 0.4s ease; }
@@ -70,63 +89,84 @@
         .status-badge.PIVOT { background-color: var(--pivot); }
         .status-badge.LEGIT { background-color: var(--legit); }
 
-        .report-box { background: white; border: 1px solid var(--border); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.5rem; }
+        .report-box { background: white; border: 1px solid var(--border); padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.2rem; }
 
-        .hustle-label { display: flex; justify-content: space-between; align-items: center; font-weight: 800; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--muted); }
-        .score-number { font-size: 2rem; font-weight: 900; color: var(--text); }
-        .score-desc { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-bottom: 1rem; }
+        .hustle-label { display: flex; justify-content: space-between; align-items: center; font-weight: 800; margin-bottom: 0.4rem; font-size: 0.8rem; color: var(--muted); }
+        .score-number { font-size: 1.8rem; font-weight: 900; color: var(--text); }
+        .score-desc { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-bottom: 0.8rem; }
 
-        .progress-bg { height: 14px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; }
+        .progress-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 0.4rem; }
         .progress-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.1, 0.5, 0.1, 1); border-radius: 6px; }
+        .score-labels { display: flex; justify-content: space-between; font-size: 0.65rem; color: #bbb; margin-bottom: 1.2rem; }
 
-        .score-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: #bbb; margin-bottom: 1.5rem; }
-
-        .model-votes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .model-votes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem; }
         .vote-chip { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
         .vote-chip.quit { background: #fee2e2; color: var(--quit); }
         .vote-chip.legit { background: #d1fae5; color: var(--legit); }
         .vote-chip.pivot { background: #fef3c7; color: var(--pivot); }
 
-        .section-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.6rem; }
-        .analysis-text { font-size: 1.05rem; color: #333; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f5f5f5; line-height: 1.8; }
+        .section-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; }
+        .analysis-text { font-size: 1rem; color: #333; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #f5f5f5; line-height: 1.8; }
 
-        .pivot-box { background: #fff8f0; border-left: 3px solid var(--pivot); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem; }
-        .pivot-box p { font-size: 1rem; font-weight: 600; color: #92400e; line-height: 1.7; }
+        .insight-box { background: #f7f7f7; border-radius: 10px; padding: 1rem; margin-bottom: 1.2rem; font-size: 0.95rem; color: #444; line-height: 1.7; }
+        .insight-box strong { color: var(--text); }
 
-        .legit-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.2rem; border-radius: 12px; margin-bottom: 1.5rem; }
+        .pivot-box { background: #fff8f0; border-left: 3px solid var(--pivot); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin-bottom: 1.2rem; }
+        .pivot-box p { font-size: 0.95rem; font-weight: 600; color: #92400e; line-height: 1.7; }
+
+        .legit-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; }
         .legit-box p { font-size: 0.95rem; color: #166534; line-height: 1.7; }
 
-        .share-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f5f5f5; }
-        .share-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.8rem; }
+        .quit-box { background: #fff5f5; border: 1px solid #fecaca; padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; }
+        .quit-box p { font-size: 0.95rem; color: #991b1b; line-height: 1.7; }
+
+        .share-section { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid #f5f5f5; }
+        .share-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.8rem; }
         .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-        .share-btn { padding: 8px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+        .share-btn { padding: 8px 14px; border-radius: 8px; border: none; font-size: 0.82rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
         .share-x { background: #000; color: white; }
         .share-fb { background: #1877f2; color: white; }
         .share-wa { background: #25d366; color: white; }
 
         .reset-btn { background: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; margin-top: 1rem; width: 100%; }
 
-        .shame-section { width: 100%; max-width: 650px; margin-top: 2rem; }
-        .shame-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 1rem 1.2rem; background: white; border: 1px solid var(--border); border-radius: 12px; user-select: none; }
-        .shame-header.open { border-radius: 12px 12px 0 0; border-bottom: none; }
-        .shame-title { font-size: 1.1rem; font-weight: 900; }
-        .shame-toggle { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
-        .shame-subtitle { font-size: 0.85rem; color: var(--muted); padding: 0.6rem 1.2rem; background: white; border-left: 1px solid var(--border); border-right: 1px solid var(--border); display: none; }
-        .shame-list { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; display: none; }
-        .shame-list.open { display: block; }
-        .shame-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border-bottom: 1px solid #f5f5f5; }
+        .shame-section { width: 100%; max-width: 650px; margin-top: 1rem; margin-bottom: 0; }
+        .shame-header {
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer; padding: 0.9rem 1.2rem;
+            background: white; border: 1px solid var(--border);
+            border-radius: 12px; user-select: none;
+            transition: border-radius 0.2s;
+        }
+        .shame-header.open { border-radius: 12px 12px 0 0; }
+        .shame-titles { display: flex; flex-direction: column; }
+        .shame-title { font-size: 1rem; font-weight: 900; }
+        .shame-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+        .shame-arrow { font-size: 1rem; color: var(--accent); font-weight: 900; transition: transform 0.3s; }
+        .shame-arrow.open { transform: rotate(180deg); }
+
+        .shame-list {
+            background: white; border: 1px solid var(--border);
+            border-top: none; border-radius: 0 0 12px 12px;
+            overflow: hidden; max-height: 0;
+            transition: max-height 0.4s ease;
+        }
+        .shame-list.open { max-height: 600px; }
+        .shame-item { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.2rem; border-bottom: 1px solid #f5f5f5; }
         .shame-item:last-child { border-bottom: none; }
-        .shame-rank { font-size: 1.1rem; font-weight: 900; color: var(--accent); width: 28px; flex-shrink: 0; }
-        .shame-idea { flex: 1; font-weight: 600; font-size: 0.95rem; }
-        .shame-count { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+        .shame-rank { font-size: 1rem; font-weight: 900; color: var(--accent); width: 28px; flex-shrink: 0; }
+        .shame-idea { flex: 1; font-weight: 600; font-size: 0.9rem; }
+        .shame-count { font-size: 0.75rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
 
-        footer { margin-top: 3rem; padding: 2rem 0; color: #bbb; font-size: 0.85rem; text-align: center; max-width: 650px; line-height: 1.6; border-top: 1px solid #f0f0f0; width: 100%; }
+        footer { margin-top: 0.8rem; padding: 1rem 0; color: #bbb; font-size: 0.8rem; text-align: center; max-width: 650px; line-height: 1.6; border-top: 1px solid #f0f0f0; width: 100%; }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.3rem; }
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
             .input-group { flex-direction: column; }
-            .btn-main { padding: 1.1rem; }
-            .hustling-text { font-size: 2.5rem; }
+            .btn-main { padding: 0.9rem; width: 100%; }
+            .report-box { padding: 1.2rem; }
+            .share-buttons { flex-direction: column; }
+            .share-btn { justify-content: center; }
         }
     </style>
 </head>
@@ -136,33 +176,41 @@
     <a href="/" class="logo">check my <span>hustle</span></a>
 </header>
 
-<div class="main-card" id="landing-view" style="max-width:650px; width:100%;">
+<div id="landing-view" style="max-width:650px; width:100%;">
     <h1>Is AI selling you a <span>dead-end dream?</span></h1>
     <p class="description">
         Got a new business idea? Been using AI to brainstorm your next hustle? Here's the thing — AI is telling <strong>a lot</strong> of other people the exact same thing.<br><br>
         Drop your idea below. We run it across the leading AI models and tell you whether your hustle is <strong>legit</strong>, whether you should <strong>quit</strong>, or exactly where to <strong>pivot</strong>.
     </p>
     <div class="input-group">
-        <input type="text" id="hustleInput" placeholder="Describe your business idea..." onkeypress="if(event.key==='Enter') analyzeHustle()">
-        <button class="btn-main" id="mainBtn" onclick="analyzeHustle()">Check my hustle</button>
+        <input type="text" id="hustleInput" placeholder="e.g. dropshipping, dog grooming, Amazon FBA..." onkeypress="if(event.key==='Enter') analyzeHustle()">
+        <button class="btn-main" onclick="analyzeHustle()">Check my hustle</button>
     </div>
     <div class="ad-slot">Advertisement — Google AdSense</div>
+
+    <div class="shame-section" id="shameSectionLanding">
+        <div class="shame-header" id="shameHeaderLanding" onclick="toggleShame()">
+            <div class="shame-titles">
+                <div class="shame-title">Wall of Shame</div>
+                <div class="shame-tagline">The worst business ideas doing the rounds right now — tap to see</div>
+            </div>
+            <div class="shame-arrow" id="shameArrow">▼</div>
+        </div>
+        <div class="shame-list" id="shameList"></div>
+    </div>
+
+    <footer>Check My Hustle isn't here to hold your hand. We run your idea across the leading AI models to give you an honest, unfiltered reality check. No hype. No fluff. Just the truth.</footer>
 </div>
 
 <div class="hustling-wrap" id="hustlingView">
     <div class="hustling-text">HUSTLING</div>
     <div class="hustling-sub">Running your idea across the leading AI models...<br>Sit tight. This takes a moment.</div>
-    <div class="model-checks">
-        <div class="model-chip" id="chip-llama">Llama 4</div>
-        <div class="model-chip" id="chip-deepseek">DeepSeek R1</div>
-        <div class="model-chip" id="chip-gemini">Gemini Flash</div>
-        <div class="model-chip" id="chip-mistral">Mistral</div>
-    </div>
+    <div class="ad-slot" style="max-width:500px; margin-top: 2rem;">Advertisement — Google AdSense</div>
 </div>
 
 <div class="results-container" id="resultsView">
     <div id="statusBadge" class="status-badge">...</div>
-    <h2 id="resultQuery" style="font-size:1.8rem;margin-bottom:1.2rem;letter-spacing:-0.5px;font-weight:900;"></h2>
+    <h2 id="resultQuery" style="font-size:clamp(1.3rem,4vw,1.8rem);margin-bottom:1rem;letter-spacing:-0.5px;font-weight:900;"></h2>
 
     <div class="report-box">
         <div class="hustle-label">
@@ -179,13 +227,20 @@
         <div class="section-label">Hustle Reality</div>
         <div id="resultFeedback" class="analysis-text"></div>
 
+        <div id="insightBox" class="insight-box" style="display:none;"></div>
+
+        <div id="quitBox" class="quit-box" style="display:none;">
+            <div class="section-label">Why you should walk away</div>
+            <p id="quitText"></p>
+        </div>
+
         <div id="pivotBox" class="pivot-box" style="display:none;">
-            <div class="section-label">The Smart Pivot</div>
+            <div class="section-label">The Smart Pivot — here's exactly what to do instead</div>
             <p id="pivotText"></p>
         </div>
 
         <div id="legitBox" class="legit-box" style="display:none;">
-            <div class="section-label">Verified Legit</div>
+            <div class="section-label">Verified Legit — here's how to win</div>
             <p id="legitText"></p>
         </div>
 
@@ -203,28 +258,15 @@
     <div class="ad-slot">Advertisement — Google AdSense</div>
 </div>
 
-<div class="shame-section" id="shameSection">
-    <div class="shame-header" id="shameHeader" onclick="toggleShame()">
-        <div class="shame-title">Wall of Shame</div>
-        <div class="shame-toggle" id="shameToggle">Show ↓</div>
-    </div>
-    <div class="shame-subtitle" id="shameSubtitle">The most recycled AI hustle ideas — submitted by real people.</div>
-    <div class="shame-list" id="shameList"></div>
-</div>
-
-<footer>
-    Check My Hustle isn't here to hold your hand. We run your idea across leading AI models to give you an honest, unfiltered reality check. No hype. No fluff. Just the truth.
-</footer>
-
 <script>
 const OR_KEY = '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';
 const OR_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
 const MODELS = [
-    { id: 'meta-llama/llama-4-scout:free', name: 'Llama 4', chip: 'chip-llama' },
-    { id: 'deepseek/deepseek-r1:free', name: 'DeepSeek R1', chip: 'chip-deepseek' },
-    { id: 'google/gemini-flash-1.5:free', name: 'Gemini Flash', chip: 'chip-gemini' },
-    { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral', chip: 'chip-mistral' }
+    { id: 'meta-llama/llama-4-scout:free', name: 'Llama 4' },
+    { id: 'deepseek/deepseek-r1:free', name: 'DeepSeek R1' },
+    { id: 'google/gemini-flash-1.5:free', name: 'Gemini Flash' },
+    { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral' }
 ];
 
 const SCORE_DESCRIPTIONS = [
@@ -253,12 +295,10 @@ let shameOpen = false;
 function toggleShame() {
     shameOpen = !shameOpen;
     const list = document.getElementById('shameList');
-    const subtitle = document.getElementById('shameSubtitle');
-    const toggle = document.getElementById('shameToggle');
-    const header = document.getElementById('shameHeader');
+    const arrow = document.getElementById('shameArrow');
+    const header = document.getElementById('shameHeaderLanding');
     list.classList.toggle('open', shameOpen);
-    subtitle.style.display = shameOpen ? 'block' : 'none';
-    toggle.textContent = shameOpen ? 'Hide ↑' : 'Show ↓';
+    arrow.classList.toggle('open', shameOpen);
     header.classList.toggle('open', shameOpen);
 }
 
@@ -268,7 +308,7 @@ function buildShameList() {
         <div class="shame-item">
             <div class="shame-rank">#${i+1}</div>
             <div class="shame-idea">${item.idea}</div>
-            <div class="shame-count">${item.count.toLocaleString()} submissions</div>
+            <div class="shame-count">${item.count.toLocaleString()} checks</div>
         </div>
     `).join('');
 }
@@ -284,19 +324,21 @@ A person wants to know if their business idea is worth pursuing, or whether AI i
 
 Business idea: "${idea}"
 
-Think carefully and thoroughly before responding. Consider:
-- How common is this idea in the current market?
-- How many people are likely pursuing this right now?
+Think carefully and thoroughly. Consider:
+- How many times has this idea been suggested by AI models to different people?
+- How saturated is this market right now?
 - What are the real barriers to success?
-- Is there a smarter angle or pivot?
-- What does the honest truth look like for someone considering this?
+- If it needs a pivot, what specifically should that pivot be and why?
+- If it is legit, what is the precise angle that gives someone the best chance of winning?
+- If they should quit, be clear about why and point them toward something smarter.
 
-Respond with ONLY valid JSON, nothing else, no explanation before or after:
+Respond with ONLY valid JSON, nothing else:
 {
   "verdict": "quit" or "legit" or "pivot",
-  "saturation": a number from 0 to 100 where 100 means the worst most oversaturated idea imaginable,
-  "reality": "two to three sentences of brutally honest specific market reality. No fluff. Real talk about what this person is actually facing.",
-  "move": "two sentences on what to actually do. If quit: explain why clearly and suggest a better direction. If pivot: give a specific actionable repositioning. If legit: give the exact angle they should push hard on to win."
+  "saturation": a number from 0 to 100 where 100 is the most oversaturated idea imaginable,
+  "reality": "three to four sentences of brutally honest specific market reality. Mention if this idea is commonly suggested by AI to many people. Be direct and specific about what the person is actually facing.",
+  "insight": "two sentences explaining how frequently AI models suggest this idea and what that means for the market opportunity.",
+  "move": "two to three sentences on what to actually do. If quit: explain clearly why this is a dead end and suggest a smarter adjacent opportunity. If pivot: give a very specific actionable repositioning with a clear reason why this pivot makes sense based on market data. If legit: give the exact angle and execution strategy they need to win, and why this works right now."
 }`;
 
     const response = await fetch(OR_URL, {
@@ -310,7 +352,7 @@ Respond with ONLY valid JSON, nothing else, no explanation before or after:
         body: JSON.stringify({
             model: model.id,
             messages: [{ role: 'user', content: prompt }],
-            max_tokens: 500
+            max_tokens: 600
         })
     });
 
@@ -328,20 +370,16 @@ async function analyzeHustle() {
     document.getElementById('landing-view').style.display = 'none';
     document.getElementById('hustlingView').classList.add('visible');
     document.getElementById('resultsView').classList.remove('visible');
-    MODELS.forEach(m => document.getElementById(m.chip).classList.remove('done'));
 
     const results = [];
-    const minTime = new Promise(resolve => setTimeout(resolve, 6000));
+    const minTime = new Promise(resolve => setTimeout(resolve, 7000));
 
     const promises = MODELS.map(async (model) => {
         try {
             const result = await queryModel(model, idea);
             result.modelName = model.name;
             results.push(result);
-            document.getElementById(model.chip).classList.add('done');
-        } catch(e) {
-            document.getElementById(model.chip).classList.add('done');
-        }
+        } catch(e) {}
     });
 
     await Promise.all([Promise.all(promises), minTime]);
@@ -349,6 +387,7 @@ async function analyzeHustle() {
     const votes = { quit: 0, legit: 0, pivot: 0 };
     let totalSaturation = 0;
     const realities = [];
+    const insights = [];
     const moves = [];
 
     results.forEach(r => {
@@ -356,15 +395,17 @@ async function analyzeHustle() {
         if (votes[v] !== undefined) votes[v]++;
         totalSaturation += (r.saturation || 50);
         if (r.reality) realities.push(r.reality);
+        if (r.insight) insights.push(r.insight);
         if (r.move) moves.push(r.move);
     });
 
     const verdict = Object.entries(votes).sort((a,b) => b[1]-a[1])[0][0];
     const avgSaturation = results.length > 0 ? Math.round(totalSaturation / results.length) : 50;
     const reality = realities[0] || 'The market is competitive. Do your research before diving in.';
+    const insight = insights[0] || '';
     const move = moves[0] || 'Proceed with caution and validate before investing time or money.';
 
-    currentResult = { idea, verdict, avgSaturation, reality, move, votes };
+    currentResult = { idea, verdict, avgSaturation, reality, insight, move, votes };
 
     if (verdict === 'quit') {
         const existing = shameData.find(s => s.idea.toLowerCase() === idea.toLowerCase());
@@ -377,7 +418,7 @@ async function analyzeHustle() {
     displayResults(currentResult);
 }
 
-function displayResults({ idea, verdict, avgSaturation, reality, move, votes }) {
+function displayResults({ idea, verdict, avgSaturation, reality, insight, move, votes }) {
     document.getElementById('hustlingView').classList.remove('visible');
 
     const badge = document.getElementById('statusBadge');
@@ -392,27 +433,39 @@ function displayResults({ idea, verdict, avgSaturation, reality, move, votes }) 
     setTimeout(() => { bar.style.width = `${avgSaturation}%`; }, 100);
     bar.style.backgroundColor = verdict === 'quit' ? 'var(--quit)' : verdict === 'legit' ? 'var(--legit)' : 'var(--pivot)';
 
+    const totalVotes = Object.values(votes).reduce((a,b) => a+b, 0);
     const votesEl = document.getElementById('modelVotes');
     votesEl.innerHTML = Object.entries(votes).map(([v, count]) =>
-        count > 0 ? `<span class="vote-chip ${v}">${count} said ${v.toUpperCase()}</span>` : ''
+        count > 0 ? `<span class="vote-chip ${v}">${count} of ${totalVotes} AI models said ${v.toUpperCase()}</span>` : ''
     ).join('');
 
     document.getElementById('resultFeedback').textContent = reality;
 
+    const insightEl = document.getElementById('insightBox');
+    if (insight) {
+        insightEl.style.display = 'block';
+        insightEl.innerHTML = `<strong>Across the major AI models:</strong> ${insight}`;
+    } else {
+        insightEl.style.display = 'none';
+    }
+
+    document.getElementById('quitBox').style.display = 'none';
     document.getElementById('pivotBox').style.display = 'none';
     document.getElementById('legitBox').style.display = 'none';
 
-    if (verdict === 'pivot') {
+    if (verdict === 'quit') {
+        document.getElementById('quitBox').style.display = 'block';
+        document.getElementById('quitText').textContent = move;
+    } else if (verdict === 'pivot') {
         document.getElementById('pivotBox').style.display = 'block';
         document.getElementById('pivotText').textContent = move;
     } else if (verdict === 'legit') {
         document.getElementById('legitBox').style.display = 'block';
         document.getElementById('legitText').textContent = move;
-    } else {
-        document.getElementById('resultFeedback').textContent = reality + ' ' + move;
     }
 
     document.getElementById('resultsView').classList.add('visible');
+    window.scrollTo(0, 0);
 }
 
 function shareResult(platform) {
