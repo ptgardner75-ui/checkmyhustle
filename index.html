@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check My Hustle | The Honest Reality Check</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #fdfaf5;
@@ -15,6 +15,7 @@
             --legit: #10b981;
             --quit: #ef4444;
             --pivot: #f59e0b;
+            --shit: #7c3aed;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -43,6 +44,7 @@
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             outline: none; background: white;
             min-width: 0;
+            font-family: 'Inter', sans-serif;
         }
         input[type="text"]:focus { border-color: var(--accent); }
         .btn-main {
@@ -51,9 +53,34 @@
             border-radius: 12px; font-weight: 700;
             cursor: pointer; font-size: clamp(0.85rem, 2vw, 1rem);
             transition: transform 0.1s; white-space: nowrap;
+            font-family: 'Inter', sans-serif;
         }
         .btn-main:active { transform: scale(0.98); }
         .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
+        .slick-intro {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            border: 1px solid #333;
+        }
+        .slick-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .slick-speech { flex: 1; }
+        .slick-name { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
+        .slick-quote { font-size: 0.9rem; color: #ccc; line-height: 1.6; font-style: italic; }
         .ad-slot {
             width: 100%; border: 1px solid var(--border);
             padding: 1rem; text-align: center; color: #aaa;
@@ -64,20 +91,51 @@
         .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1rem; width: 100%; }
         .hustling-wrap.visible { display: flex; }
         .hustling-text {
-            font-size: clamp(2.5rem, 10vw, 4rem);
-            font-weight: 900; color: var(--accent);
-            letter-spacing: -2px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 12vw, 5rem);
+            color: var(--accent);
+            letter-spacing: 4px;
             animation: hustle-flash 1s ease-in-out infinite;
         }
         .hustling-sub { font-size: 0.9rem; color: var(--muted); margin-top: 1rem; text-align: center; max-width: 300px; line-height: 1.7; }
+        .slick-loading {
+            margin-top: 1.5rem;
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            max-width: 340px;
+            width: 100%;
+        }
+        .slick-loading .slick-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
+        .slick-loading .typing { font-size: 0.85rem; color: #ccc; font-style: italic; }
         @keyframes hustle-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.08; } }
         .results-container { display: none; width: 100%; max-width: 650px; }
         .results-container.visible { display: block; animation: fadeUp 0.4s ease; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .status-badge { display: inline-block; padding: 6px 16px; border-radius: 6px; font-weight: 900; font-size: 0.9rem; margin-bottom: 0.8rem; color: white; }
-        .status-badge.QUIT { background-color: var(--quit); }
-        .status-badge.PIVOT { background-color: var(--pivot); }
-        .status-badge.LEGIT { background-color: var(--legit); }
+        .verdict-banner {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .verdict-badge-large {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            padding: 8px 20px;
+            border-radius: 8px;
+            color: white;
+            flex-shrink: 0;
+        }
+        .verdict-badge-large.QUIT { background: var(--quit); }
+        .verdict-badge-large.PIVOT { background: var(--pivot); color: #1a1a1a; }
+        .verdict-badge-large.LEGIT { background: var(--legit); }
+        .verdict-badge-large.SHIT { background: var(--shit); }
+        .verdict-idea { color: #999; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .verdict-idea strong { color: white; }
         .report-box { background: white; border: 1px solid var(--border); padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.2rem; }
         .hustle-label { display: flex; justify-content: space-between; align-items: center; font-weight: 800; margin-bottom: 0.4rem; font-size: 0.8rem; color: var(--muted); }
         .score-number { font-size: 1.8rem; font-weight: 900; color: var(--text); }
@@ -85,46 +143,102 @@
         .progress-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-bottom: 0.4rem; }
         .progress-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.1, 0.5, 0.1, 1); border-radius: 6px; }
         .score-labels { display: flex; justify-content: space-between; font-size: 0.65rem; color: #bbb; margin-bottom: 1.2rem; }
-        .section-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; margin-top: 1rem;}
+        .section-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; margin-top: 1rem; }
         .analysis-text { font-size: 1rem; color: #333; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #f5f5f5; line-height: 1.8; }
-        .pivot-box, .legit-box, .quit-box { padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; display: none; }
-        .pivot-box { background: #fff8f0; border-left: 4px solid var(--pivot); }
-        .pivot-box p { color: #92400e; font-weight: 500; }
-        .legit-box { background: #f0fdf4; border-left: 4px solid var(--legit); }
-        .legit-box p { color: #166534; font-weight: 500; }
-        .quit-box { background: #fff5f5; border-left: 4px solid var(--quit); }
-        .quit-box p { color: #991b1b; font-weight: 500; }
-        .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;}
-        .share-btn { padding: 10px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: white; flex: 1; min-width: 120px;}
+        .slick-verdict {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .slick-verdict .slick-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.4rem; }
+        .slick-verdict .slick-quote { font-size: 0.9rem; color: #ddd; line-height: 1.6; font-style: italic; }
+        .action-box { padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; }
+        .action-box.PIVOT { background: #fff8f0; border-left: 4px solid var(--pivot); }
+        .action-box.PIVOT .action-label { color: #92400e; }
+        .action-box.PIVOT p { color: #92400e; }
+        .action-box.LEGIT { background: #f0fdf4; border-left: 4px solid var(--legit); }
+        .action-box.LEGIT .action-label { color: #166534; }
+        .action-box.LEGIT p { color: #166534; }
+        .action-box.QUIT { background: #fff5f5; border-left: 4px solid var(--quit); }
+        .action-box.QUIT .action-label { color: #991b1b; }
+        .action-box.QUIT p { color: #991b1b; }
+        .action-box.SHIT { background: #f5f3ff; border-left: 4px solid var(--shit); }
+        .action-box.SHIT .action-label { color: #5b21b6; }
+        .action-box.SHIT p { color: #5b21b6; }
+        .action-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem; }
+        .teaser-box {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        .teaser-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.6rem; }
+        .teaser-text { font-size: 1rem; color: #eee; line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+        .btn-upsell {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .share-btn { padding: 10px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: white; flex: 1; min-width: 120px; font-family: 'Inter', sans-serif; }
         .share-x { background: #000; }
         .share-wa { background: #25d366; }
-        .reset-btn { background: none; border: 1px solid var(--border); padding: 12px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; margin-top: 10px;}
+        .reset-btn { background: none; border: 1px solid var(--border); padding: 12px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; margin-top: 10px; font-family: 'Inter', sans-serif; }
         .shame-section { width: 100%; max-width: 650px; margin-top: 2rem; }
         .shame-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; }
         .shame-list { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-out; }
         .shame-list.open { max-height: 500px; }
-        .shame-item { display: flex; justify-content: space-between; padding: 0.8rem 1rem; border-bottom: 1px solid #f5f5f5; font-size: 0.9rem; }
+        .shame-item { display: flex; justify-content: space-between; padding: 0.8rem 1rem; border-bottom: 1px solid #f5f5f5; font-size: 0.9rem; align-items: center; }
+        .shame-badge { font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; color: white; }
+        .shame-badge.QUIT { background: var(--quit); }
+        .shame-badge.SHIT { background: var(--shit); }
         footer { margin-top: 3rem; color: #999; font-size: 0.75rem; text-align: center; width: 100%; border-top: 1px solid #eee; padding-top: 1rem; }
         @media (max-width: 480px) { .input-group { flex-direction: column; } .btn-main { padding: 1rem; } }
+        .error-box { background: #fff5f5; border: 1px solid #fecaca; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1rem; color: #991b1b; font-size: 0.9rem; display: none; }
+        .error-box.visible { display: block; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="#" class="logo" onclick="resetPage()">check my <span>hustle</span></a>
+    <a href="#" class="logo" onclick="resetPage(); return false;">check my <span>hustle</span></a>
 </header>
 
 <div id="landing-view" style="max-width:650px; width:100%;">
     <h1>Is AI selling you a <span>dead-end side hustle?</span></h1>
     <p class="description">
-        AI is selling <strong>a lot</strong> of people the exact same hustle. Drop your idea below. We audit it across the leading AI models to see if it's <strong>legit</strong>, <strong>sh*t</strong>, or a <strong>pivot</strong>.
+        AI is selling <strong>a lot</strong> of people the exact same hustle. Drop your idea below and <strong>Slick</strong> will tell you the truth.
     </p>
+
+    <div class="slick-intro">
+        <div class="slick-avatar">🕴️</div>
+        <div class="slick-speech">
+            <div class="slick-name">Slick — Your Hustle Auditor</div>
+            <div class="slick-quote">"Listen, baby — I've seen a thousand hustles. Most of 'em are the same hustle wearing a different hat. You give me your idea, I'll tell you if it's gold or just glitter."</div>
+        </div>
+    </div>
+
+    <div class="error-box" id="errorBox">⚠️ <span id="errorMsg">Something went wrong. Try again.</span></div>
+
     <div class="input-group">
         <input type="text" id="hustleInput" placeholder="e.g. AI-generated children's books..." onkeypress="if(event.key==='Enter') analyzeHustle()">
-        <button class="btn-main" onclick="analyzeHustle()">Check my hustle</button>
+        <button class="btn-main" id="checkBtn" onclick="analyzeHustle()">Check my hustle</button>
     </div>
+
     <div class="ad-slot">Advertisement — Google AdSense</div>
-    
+
     <div class="shame-section">
         <div class="shame-header" onclick="toggleShame()">
             <div><strong>Wall of Shame</strong><br><small style="color:var(--muted)">The most over-requested slop</small></div>
@@ -137,53 +251,85 @@
 
 <div class="hustling-wrap" id="hustlingView">
     <div class="hustling-text">HUSTLING</div>
-    <div class="hustling-sub">Auditing across the Council of AIs...<br>Sit tight. Brutal honesty takes a second.</div>
+    <div class="hustling-sub">Slick is running the numbers...<br>Pulling real market data. Sit tight.</div>
+    <div class="slick-loading">
+        <div class="slick-name">Slick</div>
+        <div class="typing" id="typingMsg">"Let me check the streets on this one..."</div>
+    </div>
 </div>
 
 <div class="results-container" id="resultsView">
-    <div id="statusBadge" class="status-badge">...</div>
-    <h2 id="resultQuery" style="font-weight:900; margin-bottom: 1rem;"></h2>
-    
+    <div class="verdict-banner">
+        <div>
+            <div class="verdict-badge-large" id="verdictBadge">QUIT</div>
+        </div>
+        <div>
+            <div class="verdict-idea">Slick's verdict on <strong id="resultQuery"></strong></div>
+        </div>
+    </div>
+
     <div class="report-box">
         <div class="hustle-label">AI SATURATION SCORE <span class="score-number" id="scoreNumber">0</span></div>
-        <div class="score-desc" id="scoreDesc"></div>
+        <div class="score-desc" id="scoreDesc">How saturated this idea is</div>
         <div class="progress-bg"><div id="progressBar" class="progress-fill"></div></div>
         <div class="score-labels"><span>Rare</span><span>Saturated</span></div>
-        
+
         <div class="section-label">The Reality</div>
         <div id="resultFeedback" class="analysis-text"></div>
-        
-        <div id="quitBox" class="quit-box">
-            <div class="section-label" style="color:#991b1b">Why you should walk away</div>
-            <p id="quitText"></p>
-        </div>
-        <div id="pivotBox" class="pivot-box">
-            <div class="section-label" style="color:#92400e">The Smart Pivot</div>
-            <p id="pivotText"></p>
-        </div>
-        <div id="legitBox" class="legit-box">
-            <div class="section-label" style="color:#166534">How to Win</div>
-            <p id="legitText"></p>
-        </div>
 
+        <div id="actionBox" class="action-box">
+            <div class="action-label" id="actionLabel"></div>
+            <p id="actionText"></p>
+        </div>
+    </div>
+
+    <div class="slick-verdict" id="slickVerdictBox">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🕴️</div>
+        <div>
+            <div class="slick-name">Slick Says</div>
+            <div class="slick-quote" id="slickVerdictText"></div>
+        </div>
+    </div>
+
+    <div class="teaser-box">
+        <div class="teaser-label">💡 Slick sees something you don't</div>
+        <div class="teaser-text" id="teaserText"></div>
+        <button class="btn-upsell">Fix My Hustle — $7</button>
+    </div>
+
+    <div class="report-box">
         <div class="section-label">Don't suffer alone</div>
         <div class="share-buttons">
             <button class="share-btn share-x" onclick="share('x')">𝕏 Post Roast</button>
             <button class="share-btn share-wa" onclick="share('wa')">WhatsApp</button>
         </div>
     </div>
+
     <button class="reset-btn" onclick="resetPage()">← Check another idea</button>
 </div>
 
 <script>
-    const OR_KEY = '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';
-    const OR_URL = 'https://openrouter.ai/api/v1/chat/completions';
-
-    const seedIdeas = [
-        { keywords: ["dropshipping"], echo: 95, verdict: "QUIT", reality: "The ultimate 'guru' trope. Razor-thin margins and extreme competition from millions of others.", pivot: "Source locally. Don't be the middleman for a factory everyone else has access to." },
-        { keywords: ["faceless youtube", "faceless channel"], echo: 89, verdict: "QUIT", reality: "AI-generated video content is being de-prioritized by algorithms. Saturated with low-effort slop.", pivot: "Add a unique human element or hyper-niche down to a local language." },
-        { keywords: ["amazon kdp", "coloring books"], echo: 82, verdict: "PIVOT", reality: "The 'passive income' dream has flooded Amazon with unreadable AI books.", pivot: "Focus on high-quality, specialized educational workbooks for your specific region." }
+    const SLICK_LINES = [
+        '"Let me check the streets on this one..."',
+        '"Baby, I\'ve seen this idea before. Let me verify..."',
+        '"Hold tight. Slick doesn\'t rush the truth."',
+        '"Running the numbers. The market doesn\'t lie."',
+        '"One moment. I\'m consulting my sources..."'
     ];
+
+    const SCORE_LABELS = {
+        low: 'Rare — not many doing this',
+        mid: 'Moderate competition',
+        high: 'Crowded market',
+        max: 'Completely saturated'
+    };
+
+    const ACTION_LABELS = {
+        QUIT: 'Why You Should Walk Away',
+        PIVOT: 'The Smart Pivot',
+        LEGIT: 'How to Win',
+        SHIT: 'Hard Truth'
+    };
 
     function toggleShame() {
         const list = document.getElementById('shameList');
@@ -193,91 +339,87 @@
 
     function buildShame() {
         const data = [
-            { idea: 'AI Quote Channels', count: '52k' },
-            { idea: 'Generic Dropshipping', count: '48k' },
-            { idea: 'SaaS PDF Wrappers', count: '12k' }
+            { idea: 'AI Quote YouTube Channels', verdict: 'SHIT' },
+            { idea: 'Generic Dropshipping', verdict: 'QUIT' },
+            { idea: 'AI Children\'s Books on KDP', verdict: 'QUIT' },
+            { idea: 'Faceless Motivational Reels', verdict: 'SHIT' },
+            { idea: 'Print-on-Demand T-Shirts', verdict: 'QUIT' }
         ];
-        document.getElementById('shameList').innerHTML = data.map(i => `<div class="shame-item"><span>${i.idea}</span><span style="font-weight:bold">${i.count}</span></div>`).join('');
+        document.getElementById('shameList').innerHTML = data.map(i =>
+            `<div class="shame-item"><span>${i.idea}</span><span class="shame-badge ${i.verdict}">${i.verdict}</span></div>`
+        ).join('');
     }
 
     async function analyzeHustle() {
         const idea = document.getElementById('hustleInput').value.trim();
         if (!idea || idea.length < 3) return;
 
+        document.getElementById('errorBox').classList.remove('visible');
+        document.getElementById('typingMsg').textContent = SLICK_LINES[Math.floor(Math.random() * SLICK_LINES.length)];
         document.getElementById('landing-view').style.display = 'none';
         document.getElementById('hustlingView').classList.add('visible');
+        document.getElementById('checkBtn').disabled = true;
 
-        // Check Seed List
-        const match = seedIdeas.find(s => s.keywords.some(k => idea.toLowerCase().includes(k)));
-        if (match) {
-            setTimeout(() => displayResults({...match, idea}), 1200);
-            return;
-        }
-
-        // Live AI Call
         try {
-            const res = await fetch(OR_URL, {
+            const res = await fetch('/api/roast', {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${OR_KEY}`,
-                    'Content-Type': 'application/json',
-                    'HTTP-Referer': window.location.href,
-                    'X-Title': 'Check My Hustle'
-                },
-                body: JSON.stringify({
-                    model: "google/gemini-flash-1.5:free",
-                    messages: [{
-                        role: "system",
-                        content: "You are a cynical, honest business auditor. Analyze the idea. If it's a common AI/YouTube trope, be brutal. Return JSON only: {verdict: 'QUIT'|'PIVOT'|'LEGIT', echo: 0-100, reality: 'short honest truth', advice: 'how to fix or what to do'}"
-                    }, { role: "user", content: `Idea: ${idea}` }],
-                    response_format: { type: "json_object" }
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idea })
             });
 
-            const json = await res.json();
-            const result = JSON.parse(json.choices[0].message.content);
-            displayResults({
-                idea,
-                verdict: result.verdict,
-                echo: result.echo,
-                reality: result.reality,
-                pivot: result.advice
-            });
+            if (!res.ok) throw new Error(`Server error: ${res.status}`);
+            const data = await res.json();
+            if (!data.verdict || data.hustleScore === undefined) throw new Error('Bad response');
+            displayResults({ idea, ...data });
+
         } catch (e) {
-            displayResults({ idea, verdict: "PIVOT", echo: 50, reality: "Connection fuzzy, but looks standard.", pivot: "Add a local Cape Town angle to stand out." });
+            console.error(e);
+            document.getElementById('hustlingView').classList.remove('visible');
+            document.getElementById('landing-view').style.display = 'block';
+            document.getElementById('errorBox').classList.add('visible');
+            document.getElementById('errorMsg').textContent = "Slick couldn't reach the streets. Check your connection and try again.";
+            document.getElementById('checkBtn').disabled = false;
         }
     }
 
     function displayResults(data) {
         document.getElementById('hustlingView').classList.remove('visible');
         document.getElementById('resultsView').classList.add('visible');
-        
-        const v = data.verdict.toUpperCase();
-        const badge = document.getElementById('statusBadge');
-        badge.textContent = v;
-        badge.className = `status-badge ${v}`;
-        
+
+        const v = (data.verdict || 'QUIT').toUpperCase();
+        const score = Math.min(100, Math.max(0, parseInt(data.hustleScore) || 50));
+
+        const badge = document.getElementById('verdictBadge');
+        badge.textContent = v === 'SHIT' ? 'SH*T' : v;
+        badge.className = `verdict-badge-large ${v}`;
+
         document.getElementById('resultQuery').textContent = `"${data.idea}"`;
-        document.getElementById('scoreNumber').textContent = `${data.echo}/100`;
-        document.getElementById('resultFeedback').textContent = data.reality;
+        document.getElementById('scoreNumber').textContent = `${score}/100`;
 
-        // Reset display
-        document.getElementById('quitBox').style.display = v === 'QUIT' ? 'block' : 'none';
-        document.getElementById('pivotBox').style.display = v === 'PIVOT' ? 'block' : 'none';
-        document.getElementById('legitBox').style.display = v === 'LEGIT' ? 'block' : 'none';
+        let scoreDesc = SCORE_LABELS.mid;
+        if (score < 30) scoreDesc = SCORE_LABELS.low;
+        else if (score < 60) scoreDesc = SCORE_LABELS.mid;
+        else if (score < 85) scoreDesc = SCORE_LABELS.high;
+        else scoreDesc = SCORE_LABELS.max;
+        document.getElementById('scoreDesc').textContent = scoreDesc;
 
-        document.getElementById('quitText').textContent = data.reality;
-        document.getElementById('pivotText').textContent = data.pivot;
-        document.getElementById('legitText').textContent = data.pivot;
+        document.getElementById('resultFeedback').textContent = data.reality || '';
+
+        const actionBox = document.getElementById('actionBox');
+        actionBox.className = `action-box ${v}`;
+        document.getElementById('actionLabel').textContent = ACTION_LABELS[v] || 'The Move';
+        document.getElementById('actionText').textContent = data.suggestion || '';
+
+        document.getElementById('slickVerdictText').textContent = `"${data.teaser || 'There\'s more to this story, baby.'}"`;
+        document.getElementById('teaserText').textContent = data.teaser || 'There\'s a smarter angle here. Slick sees it.';
 
         const bar = document.getElementById('progressBar');
         bar.style.width = '0%';
-        setTimeout(() => {
-            bar.style.width = `${data.echo}%`;
-            bar.style.background = v === 'QUIT' ? 'var(--quit)' : (v === 'LEGIT' ? 'var(--legit)' : 'var(--pivot)');
-        }, 100);
-        
-        window.currentData = data;
+        const colors = { QUIT: 'var(--quit)', LEGIT: 'var(--legit)', PIVOT: 'var(--pivot)', SHIT: 'var(--shit)' };
+        bar.style.background = colors[v] || 'var(--accent)';
+        setTimeout(() => { bar.style.width = `${score}%`; }, 100);
+
+        window.currentData = { ...data, verdict: v };
     }
 
     function resetPage() {
@@ -285,17 +427,21 @@
         document.getElementById('landing-view').style.display = 'block';
         document.getElementById('resultsView').classList.remove('visible');
         document.getElementById('hustlingView').classList.remove('visible');
+        document.getElementById('errorBox').classList.remove('visible');
+        document.getElementById('checkBtn').disabled = false;
+        window.scrollTo(0, 0);
     }
 
     function share(p) {
-        const t = `Check My Hustle verdict for "${window.currentData.idea}": ${window.currentData.verdict} (${window.currentData.echo}/100 AI Saturation). Brutal. 💀`;
+        if (!window.currentData) return;
+        const v = window.currentData.verdict === 'SHIT' ? 'SH*T' : window.currentData.verdict;
+        const t = `Slick's verdict on "${window.currentData.idea}": ${v} (${window.currentData.hustleScore}/100 AI Saturation). No filter. 💀 checkmyhustle.com`;
         const u = window.location.href;
-        if(p==='x') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}&url=${encodeURIComponent(u)}`);
-        if(p==='wa') window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(t + ' ' + u)}`);
+        if (p === 'x') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}&url=${encodeURIComponent(u)}`);
+        if (p === 'wa') window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(t + ' ' + u)}`);
     }
 
     buildShame();
 </script>
-
 </body>
 </html>
