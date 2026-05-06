@@ -29,12 +29,9 @@
             min-height: 100vh;
             padding: 1.2rem;
         }
-
         header { width: 100%; max-width: 1000px; margin-bottom: 1.5rem; }
         .logo { font-weight: 900; font-size: 1.3rem; color: var(--text); text-decoration: none; text-transform: lowercase; }
         .logo span { color: var(--accent); }
-
-        /* HERO LAYOUT — Russell left, form right */
         .hero-layout {
             display: flex;
             gap: 2rem;
@@ -43,105 +40,62 @@
             max-width: 1000px;
             margin-bottom: 2rem;
         }
-        .russell-col {
-            flex-shrink: 0;
-            width: 320px;
-            position: relative;
-        }
+        .russell-col { flex-shrink: 0; width: 320px; position: relative; }
         .russell-img {
-            width: 100%;
-            border-radius: 20px;
-            display: block;
-            object-fit: cover;
-            object-position: top;
-            max-height: 480px;
+            width: 100%; border-radius: 20px; display: block;
+            object-fit: cover; object-position: top; max-height: 480px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.18);
         }
         .russell-nameplate {
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a1a1a;
-            border: 2px solid var(--accent);
-            border-radius: 10px;
-            padding: 8px 20px;
-            text-align: center;
-            white-space: nowrap;
+            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+            background: #1a1a1a; border: 2px solid var(--accent);
+            border-radius: 10px; padding: 8px 20px; text-align: center; white-space: nowrap;
         }
         .russell-nameplate .title { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
         .russell-nameplate .name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 2px; color: white; line-height: 1.2; }
-
         .form-col {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding-bottom: 0.5rem;
+            flex: 1; min-width: 0; display: flex; flex-direction: column;
+            justify-content: flex-end; padding-bottom: 0.5rem;
         }
-
         h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 1rem; font-weight: 900; letter-spacing: -2px; }
         h1 span { color: var(--accent); }
         .description { font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--muted); margin-bottom: 1.2rem; }
         .description strong { color: var(--text); }
-
-        /* Russell's speech bubble */
         .russell-speech {
-            background: #1a1a1a;
-            border-radius: 16px;
-            border: 1px solid #333;
-            padding: 1rem 1.2rem;
-            margin-bottom: 1.2rem;
-            position: relative;
+            background: #1a1a1a; border-radius: 16px; border: 1px solid #333;
+            padding: 1rem 1.2rem; margin-bottom: 1.2rem; position: relative;
         }
         .russell-speech::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 30px;
+            content: ''; position: absolute; bottom: -10px; left: 30px;
             width: 0; height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
+            border-left: 10px solid transparent; border-right: 10px solid transparent;
             border-top: 10px solid #1a1a1a;
         }
         .russell-speech .r-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
         .russell-speech .r-quote { font-size: 0.9rem; color: #ccc; line-height: 1.6; font-style: italic; }
-
         .error-box { background: #fff5f5; border: 1px solid #fecaca; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1rem; color: #991b1b; font-size: 0.9rem; display: none; }
         .error-box.visible { display: block; }
-
         .input-group { display: flex; gap: 10px; margin-bottom: 1rem; }
         input[type="text"] {
-            flex: 1; padding: 0.9rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-            outline: none; background: white;
-            min-width: 0;
-            font-family: 'Inter', sans-serif;
+            flex: 1; padding: 0.9rem 1rem; border: 1px solid var(--border);
+            border-radius: 12px; font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            outline: none; background: white; min-width: 0; font-family: 'Inter', sans-serif;
         }
         input[type="text"]:focus { border-color: var(--accent); }
         .btn-main {
-            background-color: var(--accent); color: white;
-            border: none; padding: 0 1.4rem;
-            border-radius: 12px; font-weight: 700;
+            background-color: var(--accent); color: white; border: none;
+            padding: 0 1.4rem; border-radius: 12px; font-weight: 700;
             cursor: pointer; font-size: clamp(0.85rem, 2vw, 1rem);
-            transition: transform 0.1s; white-space: nowrap;
-            font-family: 'Inter', sans-serif;
+            transition: transform 0.1s; white-space: nowrap; font-family: 'Inter', sans-serif;
         }
         .btn-main:active { transform: scale(0.98); }
         .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
-
         .ad-slot {
-            width: 100%; border: 1px solid var(--border);
-            padding: 1rem; text-align: center; color: #aaa;
-            font-size: 0.7rem; text-transform: uppercase;
+            width: 100%; border: 1px solid var(--border); padding: 1rem;
+            text-align: center; color: #aaa; font-size: 0.7rem; text-transform: uppercase;
             letter-spacing: 2px; border-radius: 12px; margin: 1rem 0;
             background: #fffcf9; max-width: 1000px;
         }
-
-        /* Wall of Shame */
         .shame-section { width: 100%; max-width: 1000px; margin-top: 0.5rem; }
         .shame-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; }
         .shame-list { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-out; }
@@ -150,85 +104,41 @@
         .shame-badge { font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; color: white; }
         .shame-badge.QUIT { background: var(--quit); }
         .shame-badge.SHIT { background: var(--shit); }
-
-        /* Loading */
         .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1rem; width: 100%; }
         .hustling-wrap.visible { display: flex; }
         .hustling-text {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(3rem, 12vw, 5rem);
-            color: var(--accent);
-            letter-spacing: 4px;
+            color: var(--accent); letter-spacing: 4px;
             animation: hustle-flash 1s ease-in-out infinite;
         }
         .hustling-sub { font-size: 0.9rem; color: var(--muted); margin-top: 1rem; text-align: center; max-width: 300px; line-height: 1.7; }
         .russell-loading {
-            margin-top: 1.5rem;
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 1rem 1.4rem;
-            max-width: 340px;
-            width: 100%;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+            margin-top: 1.5rem; background: #1a1a1a; border-radius: 12px;
+            padding: 1rem 1.4rem; max-width: 340px; width: 100%;
+            display: flex; gap: 1rem; align-items: center;
         }
         .russell-loading img {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: top;
-            flex-shrink: 0;
-            border: 2px solid var(--accent);
+            width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+            object-position: top; flex-shrink: 0; border: 2px solid var(--accent);
         }
         .russell-loading .r-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
         .russell-loading .typing { font-size: 0.85rem; color: #ccc; font-style: italic; }
         @keyframes hustle-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.08; } }
-
-        /* Results */
         .results-container { display: none; width: 100%; max-width: 1000px; }
         .results-container.visible { display: block; animation: fadeUp 0.4s ease; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Results layout — Russell thumbnail + verdict */
-        .results-top {
-            display: flex;
-            gap: 1.2rem;
-            align-items: stretch;
-            margin-bottom: 1.2rem;
-        }
-        .results-russell-thumb {
-            width: 120px;
-            flex-shrink: 0;
-            border-radius: 14px;
-            overflow: hidden;
-        }
-        .results-russell-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-        }
+        .results-top { display: flex; gap: 1.2rem; align-items: stretch; margin-bottom: 1.2rem; }
+        .results-russell-thumb { width: 120px; flex-shrink: 0; border-radius: 14px; overflow: hidden; }
+        .results-russell-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
         .verdict-banner {
-            background: #1a1a1a;
-            border-radius: 16px;
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 0.6rem;
+            background: #1a1a1a; border-radius: 16px; padding: 1.5rem;
+            flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.6rem;
         }
         .verdict-badge-large {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            letter-spacing: 3px;
-            padding: 8px 20px;
-            border-radius: 8px;
-            color: white;
-            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem;
+            letter-spacing: 3px; padding: 8px 20px; border-radius: 8px;
+            color: white; display: inline-block;
         }
         .verdict-badge-large.QUIT { background: var(--quit); }
         .verdict-badge-large.PIVOT { background: var(--pivot); color: #1a1a1a; }
@@ -236,7 +146,6 @@
         .verdict-badge-large.SHIT { background: var(--shit); }
         .verdict-idea { color: #999; font-size: 0.85rem; }
         .verdict-idea strong { color: white; }
-
         .report-box { background: white; border: 1px solid var(--border); padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.2rem; }
         .hustle-label { display: flex; justify-content: space-between; align-items: center; font-weight: 800; margin-bottom: 0.4rem; font-size: 0.8rem; color: var(--muted); }
         .score-number { font-size: 1.8rem; font-weight: 900; color: var(--text); }
@@ -246,28 +155,16 @@
         .score-labels { display: flex; justify-content: space-between; font-size: 0.65rem; color: #bbb; margin-bottom: 1.2rem; }
         .section-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; margin-top: 1rem; }
         .analysis-text { font-size: 1rem; color: #333; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #f5f5f5; line-height: 1.8; }
-
         .russell-verdict {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 1.2rem 1.4rem;
-            margin-bottom: 1.2rem;
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
+            background: #1a1a1a; border-radius: 12px; padding: 1.2rem 1.4rem;
+            margin-bottom: 1.2rem; display: flex; gap: 1rem; align-items: flex-start;
         }
         .russell-verdict img {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: top;
-            flex-shrink: 0;
-            border: 2px solid var(--accent);
+            width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+            object-position: top; flex-shrink: 0; border: 2px solid var(--accent);
         }
         .russell-verdict .r-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.4rem; }
         .russell-verdict .r-quote { font-size: 0.9rem; color: #ddd; line-height: 1.6; font-style: italic; }
-
         .action-box { padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; }
         .action-box.PIVOT { background: #fff8f0; border-left: 4px solid var(--pivot); }
         .action-box.PIVOT .action-label, .action-box.PIVOT p { color: #92400e; }
@@ -278,14 +175,7 @@
         .action-box.SHIT { background: #f5f3ff; border-left: 4px solid var(--shit); }
         .action-box.SHIT .action-label, .action-box.SHIT p { color: #5b21b6; }
         .action-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem; }
-
-        .teaser-box {
-            background: #1a1a1a;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.2rem;
-            text-align: center;
-        }
+        .teaser-box { background: #1a1a1a; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.2rem; text-align: center; }
         .teaser-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.6rem; }
         .teaser-text { font-size: 1rem; color: #eee; line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
         .btn-upsell {
@@ -293,16 +183,12 @@
             padding: 0.9rem 2rem; border-radius: 10px; font-weight: 800;
             font-size: 1rem; cursor: pointer; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;
         }
-
         .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
         .share-btn { padding: 10px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: white; flex: 1; min-width: 120px; font-family: 'Inter', sans-serif; }
         .share-x { background: #000; }
         .share-wa { background: #25d366; }
         .reset-btn { background: none; border: 1px solid var(--border); padding: 12px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; margin-top: 10px; font-family: 'Inter', sans-serif; }
-
         footer { margin-top: 3rem; color: #999; font-size: 0.75rem; text-align: center; width: 100%; border-top: 1px solid #eee; padding-top: 1rem; }
-
-        /* Mobile */
         @media (max-width: 680px) {
             .hero-layout { flex-direction: column; align-items: center; }
             .russell-col { width: 100%; max-width: 340px; }
@@ -322,9 +208,7 @@
 
 <!-- LANDING VIEW -->
 <div id="landing-view" style="width:100%;">
-
     <div class="hero-layout">
-        <!-- Russell — left column -->
         <div class="russell-col">
             <img src="russell%201.png" alt="Russell, King of the Hustle" class="russell-img">
             <div class="russell-nameplate">
@@ -333,21 +217,16 @@
                 <div class="title" style="letter-spacing:1px;">King of the Hustle</div>
             </div>
         </div>
-
-        <!-- Form — right column -->
         <div class="form-col">
             <h1>Is AI selling you a <span>dead-end side hustle?</span></h1>
             <p class="description">
                 AI is selling <strong>a lot</strong> of people the exact same hustle. Drop your idea below and <strong>Russell</strong> will tell you the truth.
             </p>
-
             <div class="russell-speech">
                 <div class="r-name">Russell — King of the Hustle</div>
                 <div class="r-quote">"Baby, I've seen every hustle there is. Most of 'em are the same con wearing a different suit. You give me your idea — I'll tell you straight if it's gold or just glitter."</div>
             </div>
-
             <div class="error-box" id="errorBox">⚠️ <span id="errorMsg">Something went wrong. Try again.</span></div>
-
             <div class="input-group">
                 <input type="text" id="hustleInput" placeholder="e.g. AI-generated children's books..." onkeypress="if(event.key==='Enter') analyzeHustle()">
                 <button class="btn-main" id="checkBtn" onclick="analyzeHustle()">Check my hustle</button>
@@ -364,7 +243,6 @@
         </div>
         <div id="shameList" class="shame-list"></div>
     </div>
-
     <footer>&copy; 2026 Check My Hustle. Built for the skeptical builder.</footer>
 </div>
 
@@ -383,7 +261,6 @@
 
 <!-- RESULTS VIEW -->
 <div class="results-container" id="resultsView">
-
     <div class="results-top">
         <div class="results-russell-thumb">
             <img src="russell%201.png" alt="Russell">
@@ -399,10 +276,8 @@
         <div class="score-desc" id="scoreDesc">How saturated this idea is</div>
         <div class="progress-bg"><div id="progressBar" class="progress-fill"></div></div>
         <div class="score-labels"><span>Rare</span><span>Saturated</span></div>
-
         <div class="section-label">The Reality</div>
         <div id="resultFeedback" class="analysis-text"></div>
-
         <div id="actionBox" class="action-box">
             <div class="action-label" id="actionLabel"></div>
             <p id="actionText"></p>
@@ -430,7 +305,6 @@
             <button class="share-btn share-wa" onclick="share('wa')">WhatsApp</button>
         </div>
     </div>
-
     <button class="reset-btn" onclick="resetPage()">← Check another idea</button>
 </div>
 
@@ -487,8 +361,7 @@
         document.getElementById('checkBtn').disabled = true;
 
         try {
-            // FIXED LINE BELOW
-            const res = await fetch('/.netlify/functions/hustle', {
+            const res = await fetch('https://hustle.ptgardner75.workers.dev', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ idea })
@@ -496,7 +369,10 @@
 
             if (!res.ok) throw new Error(`Server error: ${res.status}`);
             const data = await res.json();
-            if (!data.verdict || data.hustleScore === undefined) throw new Error('Bad response');
+
+            // Verdict comes directly from Russell — no guessing
+            if (!data.verdict || data.hustleScore === undefined) throw new Error('Bad response from Russell');
+
             displayResults({ idea, ...data });
 
         } catch (e) {
@@ -513,7 +389,7 @@
         document.getElementById('hustlingView').classList.remove('visible');
         document.getElementById('resultsView').classList.add('visible');
 
-        const v = (data.verdict || 'QUIT').toUpperCase();
+        const v = (data.verdict || 'PIVOT').toUpperCase();
         const score = Math.min(100, Math.max(0, parseInt(data.hustleScore) || 50));
 
         const badge = document.getElementById('verdictBadge');
