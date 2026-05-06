@@ -487,7 +487,8 @@
         document.getElementById('checkBtn').disabled = true;
 
         try {
-            const res = await fetch('/api/roast', {
+            // FIXED LINE BELOW
+            const res = await fetch('/.netlify/functions/hustle', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ idea })
