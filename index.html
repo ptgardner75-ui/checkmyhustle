@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check My Hustle | The Honest Reality Check</title>
+    <title>Check My Hustle | Russell, King of the Hustle</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -29,14 +29,89 @@
             min-height: 100vh;
             padding: 1.2rem;
         }
-        header { width: 100%; max-width: 700px; margin-bottom: 1.5rem; }
+
+        header { width: 100%; max-width: 1000px; margin-bottom: 1.5rem; }
         .logo { font-weight: 900; font-size: 1.3rem; color: var(--text); text-decoration: none; text-transform: lowercase; }
         .logo span { color: var(--accent); }
-        h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; margin-bottom: 1rem; font-weight: 900; letter-spacing: -2px; }
+
+        /* HERO LAYOUT — Russell left, form right */
+        .hero-layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-end;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 2rem;
+        }
+        .russell-col {
+            flex-shrink: 0;
+            width: 320px;
+            position: relative;
+        }
+        .russell-img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+            object-fit: cover;
+            object-position: top;
+            max-height: 480px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        }
+        .russell-nameplate {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            padding: 8px 20px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .russell-nameplate .title { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+        .russell-nameplate .name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 2px; color: white; line-height: 1.2; }
+
+        .form-col {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 0.5rem;
+        }
+
+        h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 1rem; font-weight: 900; letter-spacing: -2px; }
         h1 span { color: var(--accent); }
-        .description { font-size: clamp(0.95rem, 2.5vw, 1.15rem); color: var(--muted); margin-bottom: 1.5rem; }
+        .description { font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--muted); margin-bottom: 1.2rem; }
         .description strong { color: var(--text); }
-        .input-group { display: flex; gap: 10px; margin-bottom: 1.2rem; }
+
+        /* Russell's speech bubble */
+        .russell-speech {
+            background: #1a1a1a;
+            border-radius: 16px;
+            border: 1px solid #333;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+        .russell-speech::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            width: 0; height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #1a1a1a;
+        }
+        .russell-speech .r-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
+        .russell-speech .r-quote { font-size: 0.9rem; color: #ccc; line-height: 1.6; font-style: italic; }
+
+        .error-box { background: #fff5f5; border: 1px solid #fecaca; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1rem; color: #991b1b; font-size: 0.9rem; display: none; }
+        .error-box.visible { display: block; }
+
+        .input-group { display: flex; gap: 10px; margin-bottom: 1rem; }
         input[type="text"] {
             flex: 1; padding: 0.9rem 1rem;
             border: 1px solid var(--border);
@@ -57,37 +132,26 @@
         }
         .btn-main:active { transform: scale(0.98); }
         .btn-main:disabled { opacity: 0.5; cursor: not-allowed; }
-        .slick-intro {
-            background: #1a1a1a;
-            border-radius: 16px;
-            padding: 1.2rem 1.4rem;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            border: 1px solid #333;
-        }
-        .slick-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
-        }
-        .slick-speech { flex: 1; }
-        .slick-name { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
-        .slick-quote { font-size: 0.9rem; color: #ccc; line-height: 1.6; font-style: italic; }
+
         .ad-slot {
             width: 100%; border: 1px solid var(--border);
             padding: 1rem; text-align: center; color: #aaa;
             font-size: 0.7rem; text-transform: uppercase;
             letter-spacing: 2px; border-radius: 12px; margin: 1rem 0;
-            background: #fffcf9;
+            background: #fffcf9; max-width: 1000px;
         }
+
+        /* Wall of Shame */
+        .shame-section { width: 100%; max-width: 1000px; margin-top: 0.5rem; }
+        .shame-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; }
+        .shame-list { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-out; }
+        .shame-list.open { max-height: 500px; }
+        .shame-item { display: flex; justify-content: space-between; padding: 0.8rem 1rem; border-bottom: 1px solid #f5f5f5; font-size: 0.9rem; align-items: center; }
+        .shame-badge { font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; color: white; }
+        .shame-badge.QUIT { background: var(--quit); }
+        .shame-badge.SHIT { background: var(--shit); }
+
+        /* Loading */
         .hustling-wrap { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1rem; width: 100%; }
         .hustling-wrap.visible { display: flex; }
         .hustling-text {
@@ -98,28 +162,64 @@
             animation: hustle-flash 1s ease-in-out infinite;
         }
         .hustling-sub { font-size: 0.9rem; color: var(--muted); margin-top: 1rem; text-align: center; max-width: 300px; line-height: 1.7; }
-        .slick-loading {
+        .russell-loading {
             margin-top: 1.5rem;
             background: #1a1a1a;
             border-radius: 12px;
             padding: 1rem 1.4rem;
             max-width: 340px;
             width: 100%;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
-        .slick-loading .slick-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
-        .slick-loading .typing { font-size: 0.85rem; color: #ccc; font-style: italic; }
+        .russell-loading img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            flex-shrink: 0;
+            border: 2px solid var(--accent);
+        }
+        .russell-loading .r-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
+        .russell-loading .typing { font-size: 0.85rem; color: #ccc; font-style: italic; }
         @keyframes hustle-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.08; } }
-        .results-container { display: none; width: 100%; max-width: 650px; }
+
+        /* Results */
+        .results-container { display: none; width: 100%; max-width: 1000px; }
         .results-container.visible { display: block; animation: fadeUp 0.4s ease; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Results layout — Russell thumbnail + verdict */
+        .results-top {
+            display: flex;
+            gap: 1.2rem;
+            align-items: stretch;
+            margin-bottom: 1.2rem;
+        }
+        .results-russell-thumb {
+            width: 120px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .results-russell-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
         .verdict-banner {
             background: #1a1a1a;
             border-radius: 16px;
             padding: 1.5rem;
-            margin-bottom: 1.2rem;
+            flex: 1;
             display: flex;
-            align-items: center;
-            gap: 1.2rem;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.6rem;
         }
         .verdict-badge-large {
             font-family: 'Bebas Neue', sans-serif;
@@ -128,14 +228,15 @@
             padding: 8px 20px;
             border-radius: 8px;
             color: white;
-            flex-shrink: 0;
+            display: inline-block;
         }
         .verdict-badge-large.QUIT { background: var(--quit); }
         .verdict-badge-large.PIVOT { background: var(--pivot); color: #1a1a1a; }
         .verdict-badge-large.LEGIT { background: var(--legit); }
         .verdict-badge-large.SHIT { background: var(--shit); }
-        .verdict-idea { color: #999; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .verdict-idea { color: #999; font-size: 0.85rem; }
         .verdict-idea strong { color: white; }
+
         .report-box { background: white; border: 1px solid var(--border); padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 1.2rem; }
         .hustle-label { display: flex; justify-content: space-between; align-items: center; font-weight: 800; margin-bottom: 0.4rem; font-size: 0.8rem; color: var(--muted); }
         .score-number { font-size: 1.8rem; font-weight: 900; color: var(--text); }
@@ -145,7 +246,8 @@
         .score-labels { display: flex; justify-content: space-between; font-size: 0.65rem; color: #bbb; margin-bottom: 1.2rem; }
         .section-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 0.5rem; margin-top: 1rem; }
         .analysis-text { font-size: 1rem; color: #333; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #f5f5f5; line-height: 1.8; }
-        .slick-verdict {
+
+        .russell-verdict {
             background: #1a1a1a;
             border-radius: 12px;
             padding: 1.2rem 1.4rem;
@@ -154,22 +256,29 @@
             gap: 1rem;
             align-items: flex-start;
         }
-        .slick-verdict .slick-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.4rem; }
-        .slick-verdict .slick-quote { font-size: 0.9rem; color: #ddd; line-height: 1.6; font-style: italic; }
+        .russell-verdict img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            flex-shrink: 0;
+            border: 2px solid var(--accent);
+        }
+        .russell-verdict .r-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.4rem; }
+        .russell-verdict .r-quote { font-size: 0.9rem; color: #ddd; line-height: 1.6; font-style: italic; }
+
         .action-box { padding: 1.2rem; border-radius: 12px; margin-bottom: 1.2rem; }
         .action-box.PIVOT { background: #fff8f0; border-left: 4px solid var(--pivot); }
-        .action-box.PIVOT .action-label { color: #92400e; }
-        .action-box.PIVOT p { color: #92400e; }
+        .action-box.PIVOT .action-label, .action-box.PIVOT p { color: #92400e; }
         .action-box.LEGIT { background: #f0fdf4; border-left: 4px solid var(--legit); }
-        .action-box.LEGIT .action-label { color: #166534; }
-        .action-box.LEGIT p { color: #166534; }
+        .action-box.LEGIT .action-label, .action-box.LEGIT p { color: #166534; }
         .action-box.QUIT { background: #fff5f5; border-left: 4px solid var(--quit); }
-        .action-box.QUIT .action-label { color: #991b1b; }
-        .action-box.QUIT p { color: #991b1b; }
+        .action-box.QUIT .action-label, .action-box.QUIT p { color: #991b1b; }
         .action-box.SHIT { background: #f5f3ff; border-left: 4px solid var(--shit); }
-        .action-box.SHIT .action-label { color: #5b21b6; }
-        .action-box.SHIT p { color: #5b21b6; }
+        .action-box.SHIT .action-label, .action-box.SHIT p { color: #5b21b6; }
         .action-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem; }
+
         .teaser-box {
             background: #1a1a1a;
             border-radius: 16px;
@@ -180,34 +289,29 @@
         .teaser-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.6rem; }
         .teaser-text { font-size: 1rem; color: #eee; line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
         .btn-upsell {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.9rem 2rem;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
+            background: var(--accent); color: white; border: none;
+            padding: 0.9rem 2rem; border-radius: 10px; font-weight: 800;
+            font-size: 1rem; cursor: pointer; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;
         }
+
         .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
         .share-btn { padding: 10px 16px; border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: white; flex: 1; min-width: 120px; font-family: 'Inter', sans-serif; }
         .share-x { background: #000; }
         .share-wa { background: #25d366; }
         .reset-btn { background: none; border: 1px solid var(--border); padding: 12px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; margin-top: 10px; font-family: 'Inter', sans-serif; }
-        .shame-section { width: 100%; max-width: 650px; margin-top: 2rem; }
-        .shame-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; }
-        .shame-list { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-out; }
-        .shame-list.open { max-height: 500px; }
-        .shame-item { display: flex; justify-content: space-between; padding: 0.8rem 1rem; border-bottom: 1px solid #f5f5f5; font-size: 0.9rem; align-items: center; }
-        .shame-badge { font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; color: white; }
-        .shame-badge.QUIT { background: var(--quit); }
-        .shame-badge.SHIT { background: var(--shit); }
+
         footer { margin-top: 3rem; color: #999; font-size: 0.75rem; text-align: center; width: 100%; border-top: 1px solid #eee; padding-top: 1rem; }
-        @media (max-width: 480px) { .input-group { flex-direction: column; } .btn-main { padding: 1rem; } }
-        .error-box { background: #fff5f5; border: 1px solid #fecaca; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1rem; color: #991b1b; font-size: 0.9rem; display: none; }
-        .error-box.visible { display: block; }
+
+        /* Mobile */
+        @media (max-width: 680px) {
+            .hero-layout { flex-direction: column; align-items: center; }
+            .russell-col { width: 100%; max-width: 340px; }
+            .russell-img { max-height: 380px; }
+            .results-top { flex-direction: column; }
+            .results-russell-thumb { width: 100%; height: 180px; }
+            .input-group { flex-direction: column; }
+            .btn-main { padding: 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -216,25 +320,39 @@
     <a href="#" class="logo" onclick="resetPage(); return false;">check my <span>hustle</span></a>
 </header>
 
-<div id="landing-view" style="max-width:650px; width:100%;">
-    <h1>Is AI selling you a <span>dead-end side hustle?</span></h1>
-    <p class="description">
-        AI is selling <strong>a lot</strong> of people the exact same hustle. Drop your idea below and <strong>Slick</strong> will tell you the truth.
-    </p>
+<!-- LANDING VIEW -->
+<div id="landing-view" style="width:100%;">
 
-    <div class="slick-intro">
-        <div class="slick-avatar">🕴️</div>
-        <div class="slick-speech">
-            <div class="slick-name">Slick — Your Hustle Auditor</div>
-            <div class="slick-quote">"Listen, baby — I've seen a thousand hustles. Most of 'em are the same hustle wearing a different hat. You give me your idea, I'll tell you if it's gold or just glitter."</div>
+    <div class="hero-layout">
+        <!-- Russell — left column -->
+        <div class="russell-col">
+            <img src="russell%201.png" alt="Russell, King of the Hustle" class="russell-img">
+            <div class="russell-nameplate">
+                <div class="title">The One & Only</div>
+                <div class="name">Russell</div>
+                <div class="title" style="letter-spacing:1px;">King of the Hustle</div>
+            </div>
         </div>
-    </div>
 
-    <div class="error-box" id="errorBox">⚠️ <span id="errorMsg">Something went wrong. Try again.</span></div>
+        <!-- Form — right column -->
+        <div class="form-col">
+            <h1>Is AI selling you a <span>dead-end side hustle?</span></h1>
+            <p class="description">
+                AI is selling <strong>a lot</strong> of people the exact same hustle. Drop your idea below and <strong>Russell</strong> will tell you the truth.
+            </p>
 
-    <div class="input-group">
-        <input type="text" id="hustleInput" placeholder="e.g. AI-generated children's books..." onkeypress="if(event.key==='Enter') analyzeHustle()">
-        <button class="btn-main" id="checkBtn" onclick="analyzeHustle()">Check my hustle</button>
+            <div class="russell-speech">
+                <div class="r-name">Russell — King of the Hustle</div>
+                <div class="r-quote">"Baby, I've seen every hustle there is. Most of 'em are the same con wearing a different suit. You give me your idea — I'll tell you straight if it's gold or just glitter."</div>
+            </div>
+
+            <div class="error-box" id="errorBox">⚠️ <span id="errorMsg">Something went wrong. Try again.</span></div>
+
+            <div class="input-group">
+                <input type="text" id="hustleInput" placeholder="e.g. AI-generated children's books..." onkeypress="if(event.key==='Enter') analyzeHustle()">
+                <button class="btn-main" id="checkBtn" onclick="analyzeHustle()">Check my hustle</button>
+            </div>
+        </div>
     </div>
 
     <div class="ad-slot">Advertisement — Google AdSense</div>
@@ -246,25 +364,33 @@
         </div>
         <div id="shameList" class="shame-list"></div>
     </div>
+
     <footer>&copy; 2026 Check My Hustle. Built for the skeptical builder.</footer>
 </div>
 
+<!-- LOADING VIEW -->
 <div class="hustling-wrap" id="hustlingView">
     <div class="hustling-text">HUSTLING</div>
-    <div class="hustling-sub">Slick is running the numbers...<br>Pulling real market data. Sit tight.</div>
-    <div class="slick-loading">
-        <div class="slick-name">Slick</div>
-        <div class="typing" id="typingMsg">"Let me check the streets on this one..."</div>
+    <div class="hustling-sub">Russell is running the numbers...<br>Pulling real market data. Sit tight.</div>
+    <div class="russell-loading">
+        <img src="russell%201.png" alt="Russell">
+        <div>
+            <div class="r-name">Russell</div>
+            <div class="typing" id="typingMsg">"Let me check the streets on this one..."</div>
+        </div>
     </div>
 </div>
 
+<!-- RESULTS VIEW -->
 <div class="results-container" id="resultsView">
-    <div class="verdict-banner">
-        <div>
-            <div class="verdict-badge-large" id="verdictBadge">QUIT</div>
+
+    <div class="results-top">
+        <div class="results-russell-thumb">
+            <img src="russell%201.png" alt="Russell">
         </div>
-        <div>
-            <div class="verdict-idea">Slick's verdict on <strong id="resultQuery"></strong></div>
+        <div class="verdict-banner">
+            <div class="verdict-badge-large" id="verdictBadge">QUIT</div>
+            <div class="verdict-idea">Russell's verdict on <strong id="resultQuery"></strong></div>
         </div>
     </div>
 
@@ -283,16 +409,16 @@
         </div>
     </div>
 
-    <div class="slick-verdict" id="slickVerdictBox">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🕴️</div>
+    <div class="russell-verdict">
+        <img src="russell%201.png" alt="Russell">
         <div>
-            <div class="slick-name">Slick Says</div>
-            <div class="slick-quote" id="slickVerdictText"></div>
+            <div class="r-name">Russell Says</div>
+            <div class="r-quote" id="russellVerdictText"></div>
         </div>
     </div>
 
     <div class="teaser-box">
-        <div class="teaser-label">💡 Slick sees something you don't</div>
+        <div class="teaser-label">💡 Russell sees something you don't</div>
         <div class="teaser-text" id="teaserText"></div>
         <button class="btn-upsell">Fix My Hustle — $7</button>
     </div>
@@ -309,10 +435,10 @@
 </div>
 
 <script>
-    const SLICK_LINES = [
+    const RUSSELL_LINES = [
         '"Let me check the streets on this one..."',
-        '"Baby, I\'ve seen this idea before. Let me verify..."',
-        '"Hold tight. Slick doesn\'t rush the truth."',
+        '"Baby, I\'ve seen this hustle before. Let me verify..."',
+        '"Hold tight. Russell doesn\'t rush the truth."',
         '"Running the numbers. The market doesn\'t lie."',
         '"One moment. I\'m consulting my sources..."'
     ];
@@ -355,7 +481,7 @@
         if (!idea || idea.length < 3) return;
 
         document.getElementById('errorBox').classList.remove('visible');
-        document.getElementById('typingMsg').textContent = SLICK_LINES[Math.floor(Math.random() * SLICK_LINES.length)];
+        document.getElementById('typingMsg').textContent = RUSSELL_LINES[Math.floor(Math.random() * RUSSELL_LINES.length)];
         document.getElementById('landing-view').style.display = 'none';
         document.getElementById('hustlingView').classList.add('visible');
         document.getElementById('checkBtn').disabled = true;
@@ -377,7 +503,7 @@
             document.getElementById('hustlingView').classList.remove('visible');
             document.getElementById('landing-view').style.display = 'block';
             document.getElementById('errorBox').classList.add('visible');
-            document.getElementById('errorMsg').textContent = "Slick couldn't reach the streets. Check your connection and try again.";
+            document.getElementById('errorMsg').textContent = "Russell couldn't reach the streets. Check your connection and try again.";
             document.getElementById('checkBtn').disabled = false;
         }
     }
@@ -410,8 +536,8 @@
         document.getElementById('actionLabel').textContent = ACTION_LABELS[v] || 'The Move';
         document.getElementById('actionText').textContent = data.suggestion || '';
 
-        document.getElementById('slickVerdictText').textContent = `"${data.teaser || 'There\'s more to this story, baby.'}"`;
-        document.getElementById('teaserText').textContent = data.teaser || 'There\'s a smarter angle here. Slick sees it.';
+        document.getElementById('russellVerdictText').textContent = `"${data.teaser || 'There\'s more to this story, baby.'}"`;
+        document.getElementById('teaserText').textContent = data.teaser || 'There\'s a smarter angle here. Russell sees it.';
 
         const bar = document.getElementById('progressBar');
         bar.style.width = '0%';
@@ -435,7 +561,7 @@
     function share(p) {
         if (!window.currentData) return;
         const v = window.currentData.verdict === 'SHIT' ? 'SH*T' : window.currentData.verdict;
-        const t = `Slick's verdict on "${window.currentData.idea}": ${v} (${window.currentData.hustleScore}/100 AI Saturation). No filter. 💀 checkmyhustle.com`;
+        const t = `Russell's verdict on "${window.currentData.idea}": ${v} (${window.currentData.hustleScore}/100 AI Saturation). No filter. 💀 checkmyhustle.com`;
         const u = window.location.href;
         if (p === 'x') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}&url=${encodeURIComponent(u)}`);
         if (p === 'wa') window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(t + ' ' + u)}`);
