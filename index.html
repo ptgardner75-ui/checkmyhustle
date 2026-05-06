@@ -40,24 +40,17 @@
             max-width: 1000px;
             margin-bottom: 2rem;
         }
-        .russell-col { flex-shrink: 0; width: 320px; position: relative; }
+        .russell-col { flex-shrink: 0; width: 380px; position: relative; }
         .russell-img {
             width: 100%; border-radius: 20px; display: block;
-            object-fit: cover; object-position: top; max-height: 480px;
+            object-fit: cover; object-position: top; max-height: 560px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.18);
         }
-        .russell-nameplate {
-            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-            background: #1a1a1a; border: 2px solid var(--accent);
-            border-radius: 10px; padding: 8px 20px; text-align: center; white-space: nowrap;
-        }
-        .russell-nameplate .title { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
-        .russell-nameplate .name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 2px; color: white; line-height: 1.2; }
         .form-col {
             flex: 1; min-width: 0; display: flex; flex-direction: column;
             justify-content: flex-end; padding-bottom: 0.5rem;
         }
-        h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 1rem; font-weight: 900; letter-spacing: -2px; }
+        h1 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); line-height: 1.15; margin-bottom: 1rem; font-weight: 900; letter-spacing: -1px; }
         h1 span { color: var(--accent); }
         .description { font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--muted); margin-bottom: 1.2rem; }
         .description strong { color: var(--text); }
@@ -72,7 +65,7 @@
             border-top: 10px solid #1a1a1a;
         }
         .russell-speech .r-name { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.3rem; }
-        .russell-speech .r-quote { font-size: 0.9rem; color: #ccc; line-height: 1.6; font-style: italic; }
+        .russell-speech .r-quote { font-size: 0.88rem; color: #ccc; line-height: 1.7; font-style: italic; }
         .error-box { background: #fff5f5; border: 1px solid #fecaca; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1rem; color: #991b1b; font-size: 0.9rem; display: none; }
         .error-box.visible { display: block; }
         .input-group { display: flex; gap: 10px; margin-bottom: 1rem; }
@@ -191,8 +184,8 @@
         footer { margin-top: 3rem; color: #999; font-size: 0.75rem; text-align: center; width: 100%; border-top: 1px solid #eee; padding-top: 1rem; }
         @media (max-width: 680px) {
             .hero-layout { flex-direction: column; align-items: center; }
-            .russell-col { width: 100%; max-width: 340px; }
-            .russell-img { max-height: 380px; }
+            .russell-col { width: 100%; max-width: 400px; }
+            .russell-img { max-height: 420px; }
             .results-top { flex-direction: column; }
             .results-russell-thumb { width: 100%; height: 180px; }
             .input-group { flex-direction: column; }
@@ -211,20 +204,18 @@
     <div class="hero-layout">
         <div class="russell-col">
             <img src="russell%201.png" alt="Russell, King of the Hustle" class="russell-img">
-            <div class="russell-nameplate">
-                <div class="title">The One & Only</div>
-                <div class="name">Russell</div>
-                <div class="title" style="letter-spacing:1px;">King of the Hustle</div>
-            </div>
         </div>
         <div class="form-col">
-            <h1>Is AI selling you a <span>dead-end side hustle?</span></h1>
-            <p class="description">
-                AI is selling <strong>a lot</strong> of people the exact same hustle. Drop your idea below and <strong>Russell</strong> will tell you the truth.
-            </p>
+            <h1>Be honest… you asked AI how to make some money, didn't you? Now you wanna know if it's <span>legit… or sh*t.</span></h1>
+            <p class="description">It's all good, baby. <strong>Russell's got you</strong> — and he don't sugarcoat.</p>
             <div class="russell-speech">
                 <div class="r-name">Russell — King of the Hustle</div>
-                <div class="r-quote">"Baby, I've seen every hustle there is. Most of 'em are the same con wearing a different suit. You give me your idea — I'll tell you straight if it's gold or just glitter."</div>
+                <div class="r-quote">
+                    "My name's Russell, King of the Hustle. I been in the game since before the game had a name. Before you think you hustling… let's check you not the one being hustled.<br><br>
+                    I'll run your play through AI, the FBI, and the CSI too. I'll confer with hustlers from the alleys and galleys all the way up to the chateaus and discos where the real money flows.<br><br>
+                    It's hard out here, baby, and Russell don't want you spendin' your money on a turkey. I'll tell you straight up if your hustle is LEGIT, you need to PIVOT, you should QUIT, or if it's just straight-up SH*T.<br><br>
+                    Now hit me. Let's see if you got glitter… or gold."
+                </div>
             </div>
             <div class="error-box" id="errorBox">⚠️ <span id="errorMsg">Something went wrong. Try again.</span></div>
             <div class="input-group">
@@ -238,7 +229,7 @@
 
     <div class="shame-section">
         <div class="shame-header" onclick="toggleShame()">
-            <div><strong>Wall of Shame</strong><br><small style="color:var(--muted)">The most over-requested slop</small></div>
+            <div><strong>Wall of Shame</strong><br><small style="color:var(--muted)">The worst business ideas doing the rounds right now — tap to see</small></div>
             <div id="shameArrow">▼</div>
         </div>
         <div id="shameList" class="shame-list"></div>
@@ -314,7 +305,9 @@
         '"Baby, I\'ve seen this hustle before. Let me verify..."',
         '"Hold tight. Russell doesn\'t rush the truth."',
         '"Running the numbers. The market doesn\'t lie."',
-        '"One moment. I\'m consulting my sources..."'
+        '"One moment. I\'m consulting my sources..."',
+        '"Checking the back rooms in Chicago..."',
+        '"Russell\'s got eyes everywhere. Give me a second..."'
     ];
 
     const SCORE_LABELS = {
@@ -328,7 +321,7 @@
         QUIT: 'Why You Should Walk Away',
         PIVOT: 'The Smart Pivot',
         LEGIT: 'How to Win',
-        SHIT: 'Hard Truth'
+        SHIT: 'Hard Truth — Walk Away Now'
     };
 
     function toggleShame() {
@@ -346,7 +339,7 @@
             { idea: 'Print-on-Demand T-Shirts', verdict: 'QUIT' }
         ];
         document.getElementById('shameList').innerHTML = data.map(i =>
-            `<div class="shame-item"><span>${i.idea}</span><span class="shame-badge ${i.verdict}">${i.verdict}</span></div>`
+            `<div class="shame-item"><span>${i.idea}</span><span class="shame-badge ${i.verdict}">${i.verdict === 'SHIT' ? 'SH*T' : i.verdict}</span></div>`
         ).join('');
     }
 
@@ -370,7 +363,7 @@
             if (!res.ok) throw new Error(`Server error: ${res.status}`);
             const data = await res.json();
 
-            // Verdict comes directly from Russell — no guessing
+            if (data.error) throw new Error(data.error);
             if (!data.verdict || data.hustleScore === undefined) throw new Error('Bad response from Russell');
 
             displayResults({ idea, ...data });
@@ -423,6 +416,7 @@
         setTimeout(() => { bar.style.width = `${score}%`; }, 100);
 
         window.currentData = { ...data, verdict: v };
+        window.scrollTo(0, 0);
     }
 
     function resetPage() {
